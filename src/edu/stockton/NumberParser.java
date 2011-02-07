@@ -41,10 +41,11 @@ public class NumberParser {
 	
 	/**
 	 * Converts a string of numbers in English word format to numeric format.
+	 * i.e. "one hundred four" to "104", "thirteen two two" to "1322", etc.
 	 * @param text The string to convert.
-	 * @return The corresponding number string representation.
+	 * @return The corresponding numeric string representation.
 	 */
-	public static String toNum(String text) throws JSONException {
+	public static String toNum(String text) {
 		String[] keys = text.split("\\-|\\ ");
 		LinkedList numbers = new LinkedList();
 		for(String k : keys) numbers.add(k);
@@ -54,25 +55,31 @@ public class NumberParser {
 		while(cursor.hasNext()) {
 			String current = (String) cursor.next();
 			current = current.toLowerCase();
-			if(current.equalsIgnoreCase("hundred")) {
-				if(cursor.hasNext()) {
-					String next = (String) cursor.next();
-					int nextVal = (int) numDictionary.getJSONObject(next).getInt("value") * numDictionary.getJSONObject(next).getInt("weight");
-					if(nextVal < 10) {
-						numString += "0";
-						numString += nextVal;
-					} else if (nextVal < 20) {
-						numString += nextVal; 
-					} else if (!cursor.hasNext()) {
-						numString += nextVal;
-					} else cursor.previous();
+			try {
+				if(current.equalsIgnoreCase("hundred")) {
+					if(cursor.hasNext()) {
+						String next = (String) cursor.next();
+						int nextVal = (int) numDictionary.getJSONObject(next).getInt("value");
+						int nextWeight = (int) numDictionary.getJSONObject(next).getInt("weight");
+						int nextNum = nextVal * nextWeight;
+						if(nextNum < 10) numString += "0" + nextNum;
+						else if(nextNum < 20 || !cursor.hasNext()) numString += nextNum; 
+						else cursor.previous();
+					} else {
+						numString += "00";
+					}
 				} else {
-					numString += "00";
+					JSONObject currentVal = (JSONObject) numDictionary.getJSONObject(current);
+					numString += currentVal.getInt("value");
 				}
-			} else {
-				JSONObject currentVal = (JSONObject) numDictionary.getJSONObject(current);
-				numString += currentVal.getInt("value");
+			} catch (JSONException e) {
+				String error = e.getLocalizedMessage();
+				int f = error.indexOf("[");
+				int l = error.indexOf("]");
+				String unidentified = error.substring(f+1, l);
+				System.out.print(unidentified + " is not a number.");
 			}
+			
 			
 		}
 		
