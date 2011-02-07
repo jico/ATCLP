@@ -81,13 +81,10 @@ public class NumberParser {
 							cursor.previous();
 						} else numString += "0";
 					}
-					
 				}
 			} catch (JSONException e) {
 				String error = e.getLocalizedMessage();
-				int f = error.indexOf("[");
-				int l = error.indexOf("]");
-				String unidentified = error.substring(f+1, l);
+				String unidentified = error.substring(error.indexOf("[")+1, error.indexOf("]"));
 				return unidentified + " is not a number.";
 			}
 			
