@@ -40,6 +40,8 @@ public class Console {
 			input = console.nextLine();
 			if(input.equals("exit")) exit = true;
 			else {
+				System.out.println(numBot.toInt(input));
+				/*
 				cmds = input.split(" ");
 				for(String cmd : cmds) {
 					cmdsList.add(cmd);
@@ -52,6 +54,7 @@ public class Console {
 					System.out.print(current);
 					System.out.println(" /" + tag(current));
 				}	
+				*/
 			}
 			
 		} while(!exit);
