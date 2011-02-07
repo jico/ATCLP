@@ -40,7 +40,7 @@ public class NumberParser {
 	}
 	
 	/**
-	 * Converts a string of English word numbers to an integer.
+	 * Converts a string of English worded numbers to an integer.
 	 * @param text The string to convert.
 	 * @return The corresponding integer representation.
 	 */
@@ -53,8 +53,14 @@ public class NumberParser {
 		int processedNum = 0;
 		while(cursor.hasNext()) {
 			String current = (String) cursor.next();
-			JSONObject currentVal = (JSONObject) numDictionary.getJSONObject(current);
-			processedNum = currentVal.getInt("value") * currentVal.getInt("weight");
+			current = current.toLowerCase();
+			if(current.equalsIgnoreCase("hundred")) {
+				processedNum *= 100;
+			} else {
+				JSONObject currentVal = (JSONObject) numDictionary.getJSONObject(current);
+				processedNum += currentVal.getInt("value") * currentVal.getInt("weight");
+			}
+			
 		}
 		
 		return processedNum;
