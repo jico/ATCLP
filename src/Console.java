@@ -40,7 +40,7 @@ public class Console {
 			input = console.nextLine();
 			if(input.equals("exit")) exit = true;
 			else {
-				System.out.println(numBot.toInt(input));
+				System.out.println(numBot.toNum(input));
 				/*
 				cmds = input.split(" ");
 				for(String cmd : cmds) {

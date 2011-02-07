@@ -40,29 +40,42 @@ public class NumberParser {
 	}
 	
 	/**
-	 * Converts a string of English worded numbers to an integer.
+	 * Converts a string of numbers in English word format to numeric format.
 	 * @param text The string to convert.
-	 * @return The corresponding integer representation.
+	 * @return The corresponding number string representation.
 	 */
-	public static int toInt(String text) throws JSONException {
+	public static String toNum(String text) throws JSONException {
 		String[] keys = text.split("\\-|\\ ");
 		LinkedList numbers = new LinkedList();
 		for(String k : keys) numbers.add(k);
 		ListIterator cursor = numbers.listIterator();
 		
-		int processedNum = 0;
+		String numString = "";
 		while(cursor.hasNext()) {
 			String current = (String) cursor.next();
 			current = current.toLowerCase();
 			if(current.equalsIgnoreCase("hundred")) {
-				processedNum *= 100;
+				if(cursor.hasNext()) {
+					String next = (String) cursor.next();
+					int nextVal = (int) numDictionary.getJSONObject(next).getInt("value") * numDictionary.getJSONObject(next).getInt("weight");
+					if(nextVal < 10) {
+						numString += "0";
+						numString += nextVal;
+					} else if (nextVal < 20) {
+						numString += nextVal; 
+					} else if (!cursor.hasNext()) {
+						numString += nextVal;
+					} else cursor.previous();
+				} else {
+					numString += "00";
+				}
 			} else {
 				JSONObject currentVal = (JSONObject) numDictionary.getJSONObject(current);
-				processedNum += currentVal.getInt("value") * currentVal.getInt("weight");
+				numString += currentVal.getInt("value");
 			}
 			
 		}
 		
-		return processedNum;
+		return numString;
 	}
 }
