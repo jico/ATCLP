@@ -53,8 +53,8 @@ public class NumberParser {
 		int processedNum = 0;
 		while(cursor.hasNext()) {
 			String current = (String) cursor.next();
-			int currentVal = (Integer) numDictionary.get(current);
-			processedNum += currentVal;
+			JSONObject currentVal = (JSONObject) numDictionary.getJSONObject(current);
+			processedNum = currentVal.getInt("value") * currentVal.getInt("weight");
 		}
 		
 		return processedNum;
