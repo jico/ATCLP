@@ -1,4 +1,12 @@
 {
+	"o": {
+		"value": 0,
+		"weight": 0
+	},
+	"oh": {
+		"value": 0,
+		"weight": 0
+	},
 	"zero": {
 		"value": 0,
 		"weight": 0
