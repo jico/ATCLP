@@ -71,13 +71,17 @@ public class NumberParser {
 				} else {
 					JSONObject currentObj = numDictionary.getJSONObject(current);
 					numString += currentObj.getInt("value");
-					/*
-					if(cursor.hasNext()) {
-						String next = cursor.next();
-						JSONObject nextObj = numDictionary.getJSONObject(next);
-						
+					int currentWeight = currentObj.getInt("weight");
+					if(currentWeight != 1) {
+						if(cursor.hasNext()) {
+							String next = cursor.next();
+							JSONObject nextObj = numDictionary.getJSONObject(next);
+							int nextWeight = nextObj.getInt("weight");
+							if(nextWeight != 1) numString += "0";
+							cursor.previous();
+						} else numString += "0";
 					}
-					*/
+					
 				}
 			} catch (JSONException e) {
 				String error = e.getLocalizedMessage();
