@@ -1,30 +1,114 @@
 {
-	"zero": 0,
-	"one": 1,
-	"two": 2,
-	"three": 3,
-	"four": 4,
-	"five": 5,
-	"six": 6,
-	"seven": 7,
-	"eight": 8,
-	"nine": 9,
-	"ten": 10,
-	"eleven": 11,
-	"twelve": 12,
-	"thirteen": 13,
-	"fourteen": 14,
-	"fifteen": 15,
-	"sixteen": 16,
-	"seventeen": 17,
-	"eighteen": 18,
-	"nineteen": 19,
-	"twenty": 20,
-	"thirty": 30,
-	"forty": 40,
-	"fifty": 50,
-	"sixty": 60,
-	"seventy": 70,
-	"eighty": 80,
-	"ninety": 90
+	"zero": {
+		"value": 0,
+		"weight": 0
+	},
+	"one": {
+		"value": 1,
+		"weight": 1
+	},
+	"two": {
+		"value": 2,
+		"weight": 1
+	},
+	"three": {
+		"value": 3,
+		"weight": 1
+	},
+	"four": {
+		"value": 4,
+		"weight": 1
+	},
+	"five": {
+		"value": 5,
+		"weight": 1
+	},
+	"six": {
+		"value": 6,
+		"weight": 1
+	},
+	"seven": {
+		"value": 7,
+		"weight": 1
+	},
+	"eight": {
+		"value": 8,
+		"weight": 1
+	},
+	"nine": {
+		"value": 9,
+		"weight": 1
+	},
+	"ten": {
+		"value": 10,
+		"weight": 1
+	},
+	"eleven": {
+		"value": 11,
+		"weight": 1
+	},
+	"twelve": {
+		"value": 12,
+		"weight": 1
+	},
+	"thirteen": {
+		"value": 13,
+		"weight": 1
+	},
+	"fourteen": {
+		"value": 14,
+		"weight": 1
+	},
+	"fifteen": {
+		"value": 15,
+		"weight": 1
+	},
+	"sixteen": {
+		"value": 16,
+		"weight": 1
+	},
+	"seventeen": {
+		"value": 17,
+		"weight": 1
+	},
+	"eighteen": {
+		"value": 18,
+		"weight": 1
+	},
+	"nineteen": {
+		"value": 19,
+		"weight": 1
+	},
+	"twenty": {
+		"value": 2,
+		"weight": 10
+	},
+	"thirty": {
+		"value": 3,
+		"weight": 10
+	},
+	"forty": {
+		"value": 4,
+		"weight": 10
+	},
+	"fifty": {
+		"value": 5,
+		"weight": 10
+	},
+	"sixty": {
+		"value": 6,
+		"weight": 10
+	},
+	"seventy": {
+		"value": 7,
+		"weight": 10
+	},
+	"eighty": {
+		"value": 8,
+		"weight": 10
+	},
+	"ninety": {
+		"value": 9,
+		"weight": 10
+	}
 }
