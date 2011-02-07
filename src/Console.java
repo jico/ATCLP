@@ -32,7 +32,7 @@ public class Console {
 	public static void main(String[] args) throws Exception {
 		boolean exit = false;
 		numBot = new NumberParser();
-		
+		System.out.println("Console started. \"exit\" to quit.");
 		do {
 			cmdsList.clear();
 			System.out.print(">> ");
