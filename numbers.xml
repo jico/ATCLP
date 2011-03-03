@@ -1,0 +1,168 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!DOCTYPE Numbers>
+
+<numbers>
+	<number>
+		<text>one</text>
+		<value>1</value>
+		<weight>1</weight>
+	</number>
+
+	<number>
+		<text>two</text>
+		<value>2</value>
+		<weight>1</weight>
+	</number>
+
+	<number>
+		<text>three</text>
+		<value>3</value>
+		<weight>1</weight>
+	</number>
+
+	<number>
+		<text>four</text>
+		<value>4</value>
+		<weight>1</weight>
+	</number>
+
+	<number>
+		<text>five</text>
+		<value>5</value>
+		<weight>1</weight>
+	</number>
+
+	<number>
+		<text>six</text>
+		<value>6</value>
+		<weight>1</weight>
+	</number>
+
+	<number>
+		<text>seven</text>
+		<value>7</value>
+		<weight>1</weight>
+	</number>
+
+	<number>
+		<text>eight</text>
+		<value>8</value>
+		<weight>1</weight>
+	</number>
+
+	<number>
+		<text>nine</text>
+		<value>9</value>
+		<weight>1</weight>
+	</number>
+
+	<number>
+		<text>ten</text>
+		<value>10</value>
+		<weight>1</weight>
+	</number>
+
+	<number>
+		<text>eleven</text>
+		<value>11</value>
+		<weight>1</weight>
+	</number>
+
+	<number>
+		<text>twelve</text>
+		<value>12</value>
+		<weight>1</weight>
+	</number>
+
+	<number>
+		<text>thirteen</text>
+		<value>13</value>
+		<weight>1</weight>
+	</number>
+
+	<number>
+		<text>fourteen</text>
+		<value>14</value>
+		<weight>1</weight>
+	</number>
+
+	<number>
+		<text>fifteen</text>
+		<value>15</value>
+		<weight>1</weight>
+	</number>
+
+	<number>
+		<text>sixteen</text>
+		<value>16</value>
+		<weight>1</weight>
+	</number>
+
+	<number>
+		<text>seventeen</text>
+		<value>17</value>
+		<weight>1</weight>
+	</number>
+
+	<number>
+		<text>eighteen</text>
+		<value>18</value>
+		<weight>1</weight>
+	</number>
+
+	<number>
+		<text>nineteen</text>
+		<value>19</value>
+		<weight>1</weight>
+	</number>
+
+	<number>
+		<text>twenty</text>
+		<value>2</value>
+		<weight>10</weight>
+	</number>
+
+	<number>
+		<text>thirty</text>
+		<value>3</value>
+		<weight>10</weight>
+	</number>
+
+	<number>
+		<text>forty</text>
+		<value>4</value>
+		<weight>10</weight>
+	</number>
+
+	<number>
+		<text>fifty</text>
+		<value>5</value>
+		<weight>10</weight>
+	</number>
+
+	<number>
+		<text>sixty</text>
+		<value>6</value>
+		<weight>10</weight>
+	</number>
+
+	<number>
+		<text>seventy</text>
+		<value>7</value>
+		<weight>10</weight>
+	</number>
+
+	<number>
+		<text>eighty</text>
+		<value>8</value>
+		<weight>10</weight>
+	</number>
+
+	<number>
+		<text>ninety</text>
+		<value>9</value>
+		<weight>10</weight>
+	</number>
+
+</numbers>
