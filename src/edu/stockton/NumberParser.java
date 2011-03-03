@@ -1,96 +1,75 @@
 package edu.stockton;
 
-import java.io.FileNotFoundException;
-import java.io.FileReader;
-import java.util.LinkedList;
-import java.util.ListIterator;
-import java.util.Scanner;
-import org.json.JSONObject;
-import org.json.JSONException;
+import java.io.IOException;
+import javax.xml.parsers.DocumentBuilder;
+import javax.xml.parsers.DocumentBuilderFactory;
+import javax.xml.parsers.FactoryConfigurationError;
+import javax.xml.parsers.ParserConfigurationException;
+import org.xml.sax.SAXException;
 
-/**
- * Number parsing and identifying utility.
- * 
- * @author Jico Baligod
- * @version 0.1a
- *
- */
+import org.w3c.dom.*;
+
 public class NumberParser {
-	private static JSONObject numDictionary;
-	private static String numSourcePath = "numbersJSON.txt";
+	private static DocumentBuilder builder;
+	private static DocumentBuilderFactory factory = DocumentBuilderFactory.newInstance();
+	private static DocumentBuilder loader;
+	private static Document numbersDoc;
+	private static Element tree;
 	
-	public NumberParser() throws FileNotFoundException, JSONException {
-		// Initialize numbers dictionary
-		FileReader sourceReader = new FileReader(numSourcePath);
-		Scanner jsonIn = new Scanner(sourceReader);
-		String jsonNumbers = "";
-		while(jsonIn.hasNext()) jsonNumbers += jsonIn.next();
-		numDictionary = new JSONObject(jsonNumbers);
+	public NumberParser() throws Exception {
+		loader = factory.newDocumentBuilder();
 	}
 	
-	/**
-	 * Determines whether a string of text of natural language is
-	 * a number.
-	 * @param text English word of number.
-	 * @return True if the English word represents a number, false otherwise.
-	 */
-	public static boolean isNumber(String text) {
-		if(numDictionary.has(text)) return true;
-		else return false;
+	public static void main(String[] args) throws Exception {
+		try {
+		      // first of all we request out 
+		      // DOM-implementation through factory above
+		      // then we have to create document-loader:
+		      DocumentBuilder loader = factory.newDocumentBuilder();
+
+		      // loading a DOM-tree...
+		      Document document = loader.parse("src/numbers.xml");
+		      // at last, we get a root element:
+		      Element tree = document.getDocumentElement();
+		      System.out.println(tree);
+		      System.out.println("root has children: " + tree.hasChildNodes());
+		      
+		      NodeList nodes = tree.getChildNodes();
+		      int l = nodes.getLength();
+		      System.out.println("Number of children: " + l);
+		      for(int i = 0; i < l; i++) {
+		    	  Node node = nodes.item(i);
+		    	  if(node.getNodeName() == "number") {
+		    		  Element number = (Element) node;
+		    		  NodeList numNodes = number.getChildNodes();
+		    		  for(int j = 0; j < numNodes.getLength(); j++) {
+		    			  if(numNodes.item(j).getNodeName() == "text") {
+		    				  Element numVal = (Element) numNodes.item(j);
+		    				  System.out.println(numVal.getTextContent());
+		    			  }
+		    		  }
+		    	  }
+		    	  
+		      }
+		      
+		    } catch (IOException ex) {
+		      // any IO errors occur:
+		      handleError(ex);
+		    } catch (SAXException ex) {
+		      // parse errors occur:
+		      handleError(ex);
+		    } catch (ParserConfigurationException ex) {
+		      // document-loader cannot be created which,
+		      // satisfies the configuration requested
+		      handleError(ex);
+		    } catch (FactoryConfigurationError ex) {
+		      // DOM-implementation is not available 
+		      // or cannot be instantiated:
+		      handleError(ex);
+		    }
 	}
 	
-	/**
-	 * Converts a string of numbers in English word format to numeric format.
-	 * i.e. "one hundred four" to "104", "thirteen two two" to "1322", etc.
-	 * @param text The string to convert.
-	 * @return The corresponding numeric string representation.
-	 */
-	public static String toNum(String text) {
-		String[] keys = text.split("\\-|\\ ");
-		LinkedList<String> numbers = new LinkedList<String>();
-		for(String k : keys) numbers.add(k);
-		ListIterator<String> cursor = numbers.listIterator();
-		
-		String numString = "";
-		while(cursor.hasNext()) {
-			String current = cursor.next();
-			current = current.toLowerCase();
-			try {
-				if(current.equalsIgnoreCase("hundred")) {
-					if(cursor.hasNext()) {
-						String next = cursor.next();
-						int nextVal = numDictionary.getJSONObject(next).getInt("value");
-						int nextWeight = numDictionary.getJSONObject(next).getInt("weight");
-						int nextNum = nextVal * nextWeight;
-						if(nextNum < 10) numString += "0" + nextNum;
-						else if(nextNum < 20 || !cursor.hasNext()) numString += nextNum; 
-						else cursor.previous();
-					} else {
-						numString += "00";
-					}
-				} else {
-					JSONObject currentObj = numDictionary.getJSONObject(current);
-					numString += currentObj.getInt("value");
-					int currentWeight = currentObj.getInt("weight");
-					if(currentWeight != 1) {
-						if(cursor.hasNext()) {
-							String next = cursor.next();
-							JSONObject nextObj = numDictionary.getJSONObject(next);
-							int nextWeight = nextObj.getInt("weight");
-							if(nextWeight != 1) numString += "0";
-							cursor.previous();
-						} else numString += "0";
-					}
-				}
-			} catch (JSONException e) {
-				String error = e.getLocalizedMessage();
-				String unidentified = error.substring(error.indexOf("[")+1, error.indexOf("]"));
-				return unidentified + " is not a number.";
-			}
-			
-			
-		}
-		
-		return numString;
-	}
+	private static final void handleError(Throwable ex) {
+	    // ... handle error here...
+	  }
 }
