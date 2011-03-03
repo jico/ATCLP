@@ -43,7 +43,7 @@ public class Console {
 				// Test string if number
 				System.out.println(numBot.isNumber(input));
 				
-				/*
+				/* 
 				cmds = input.split(" ");
 				for(String cmd : cmds) {
 					cmdsList.add(cmd);

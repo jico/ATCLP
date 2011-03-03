@@ -1,6 +1,9 @@
 package edu.stockton;
 
 import java.io.IOException;
+import java.util.LinkedList;
+import java.util.ListIterator;
+
 import javax.xml.parsers.DocumentBuilder;
 import javax.xml.parsers.DocumentBuilderFactory;
 import javax.xml.parsers.FactoryConfigurationError;
@@ -36,6 +39,18 @@ public class NumberParser {
 			if(s.equals(number.getFirstChild().getTextContent())) return true;
 		}
 		return false;
+	}
+	
+	public static String toNumeric(String text) {
+		String[] tokens = text.split("\\-|\\ ");
+
+		LinkedList<String> numbers = new LinkedList<String>();
+		for(String token : tokens) numbers.add(token);
+		ListIterator<String> cursor = numbers.listIterator();
+		
+		String numericString = "";
+		
+		return "";
 	}
 	
 	
