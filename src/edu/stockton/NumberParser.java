@@ -25,18 +25,6 @@ public class NumberParser {
 		numbers = tree.getChildNodes();
 	}
 	
-	public static void main(String[] args) throws Exception {
-		NumberParser numParser = new NumberParser();
-		
-		// Test isNumber method
-		String testCase = "forty";
-		if(numParser.isNumber(testCase)) {
-			System.out.println(testCase + " is a number");
-		} else System.out.println(testCase + " is not a number");
-		
-		      
-	}
-	
 	/**
 	 * Checks to see if a word represents a number.
 	 * @param s The string of text
