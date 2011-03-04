@@ -41,7 +41,7 @@ public class Console {
 			if(input.equals("exit")) exit = true;
 			else {
 				// Test string if number
-				System.out.println(numBot.getValue(input));
+				System.out.println(numBot.toNumeric(input));
 				
 				/* 
 				cmds = input.split(" ");

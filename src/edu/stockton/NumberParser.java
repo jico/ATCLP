@@ -37,7 +37,7 @@ public class NumberParser {
 	public static boolean isNumber(String s) {
 		for(int i = 0; i < numbers.getLength(); i++) {
 			Element number = (Element) numbers.item(i);
-			if(s.equals(number.getFirstChild().getTextContent())) return true;
+			if(s.equalsIgnoreCase(number.getFirstChild().getTextContent())) return true;
 		}
 		return false;
 	}
@@ -53,36 +53,33 @@ public class NumberParser {
 		while(cursor.hasNext()) {
 			String current = cursor.next();
 			current = current.toLowerCase();
-
+			
 			if(current.equalsIgnoreCase("hundred")) {
-				/*
+				
 				if(cursor.hasNext()) {
 					String next = cursor.next();
-					int nextVal = numDictionary.getJSONObject(next).getInt("value");
-					int nextWeight = numDictionary.getJSONObject(next).getInt("weight");
+					int nextVal = getValue(next);
+					int nextWeight = getWeight(next);
 					int nextNum = nextVal * nextWeight;
-					if(nextNum < 10) numString += "0" + nextNum;
-					else if(nextNum < 20 || !cursor.hasNext()) numString += nextNum; 
+					if(nextNum < 10) numericString += "0" + nextNum;
+					else if(nextNum < 20 || !cursor.hasNext()) numericString += nextNum; 
 					else cursor.previous();
 				} else {
-					numString += "00";
+					numericString += "00";
 				}
-				*/
+				
 			} else {
-				/*
-				JSONObject currentObj = numDictionary.getJSONObject(current);
-				numString += currentObj.getInt("value");
-				int currentWeight = currentObj.getInt("weight");
+				numericString += getValue(current);
+				int currentWeight = getWeight(current);
 				if(currentWeight != 1) {
 					if(cursor.hasNext()) {
 						String next = cursor.next();
-						JSONObject nextObj = numDictionary.getJSONObject(next);
-						int nextWeight = nextObj.getInt("weight");
-						if(nextWeight != 1) numString += "0";
+						int nextWeight = getWeight(next);
+						if(nextWeight != 1) numericString += "0";
 						cursor.previous();
-					} else numString += "0";
+					} else numericString += "0";
 				}
-				*/
+				
 			}
 		}
 		
@@ -93,12 +90,26 @@ public class NumberParser {
 	 * Returns the value (not actual numeric representation) of the string
 	 * as specified in numbers.xml document
 	 * @param s String of the number word
-	 * @return integer value of number word
+	 * @return integer value of number word, returns -1 if string is NAN
 	 */
 	public static int getValue(String s) {
 		Element number = getElement(s);
+		if(number == null) return -1;
 		NodeList numberChildren = number.getChildNodes();
 		String value = numberChildren.item(1).getTextContent();
+		return Integer.parseInt(value);
+	}
+	
+	/**
+	 * Returns the weight of the word string
+	 * @param s String of the number word
+	 * @return integer weight value of the string, returns -1 if string is NAN
+	 */
+	public static int getWeight(String s) {
+		Element number = getElement(s);
+		if(number == null) return -1;
+		NodeList numberChildren = number.getChildNodes();
+		String value = numberChildren.item(2).getTextContent();
 		return Integer.parseInt(value);
 	}
 	
