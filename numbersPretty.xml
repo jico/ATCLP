@@ -3,6 +3,19 @@
 <!DOCTYPE Numbers>
 
 <numbers>
+	
+	<number>
+		<text>o</text>
+		<value>0</value>
+		<weight>1</weight>
+	</number>
+	
+	<number>
+		<text>oh</text>
+		<value>0</value>
+		<weight>1</weight>
+	</number>
+	
 	<number>
 		<text>one</text>
 		<value>1</value>
