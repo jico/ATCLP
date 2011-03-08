@@ -29,4 +29,18 @@ public class CallsignEngine {
 		}
 		return false;
 	}
+	
+	public static String getCompany(String designator) {
+		if(!isCallsign(designator)) return "Unrecognized designator";
+		
+		for(int i = 0; i < callsigns.getLength(); i++) {
+			Element callsign = (Element) callsigns.item(i);
+			if(designator.equalsIgnoreCase(callsign.getFirstChild().getTextContent())) {
+				return callsign.getLastChild().getTextContent();
+			}
+		}
+		
+		return "Unrecognized designator";
+		
+	}
 }
