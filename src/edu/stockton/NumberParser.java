@@ -1,20 +1,13 @@
 package edu.stockton;
 
-import java.io.IOException;
 import java.util.LinkedList;
 import java.util.ListIterator;
 
 import javax.xml.parsers.DocumentBuilder;
 import javax.xml.parsers.DocumentBuilderFactory;
-import javax.xml.parsers.FactoryConfigurationError;
-import javax.xml.parsers.ParserConfigurationException;
-import org.xml.sax.SAXException;
-
-import org.json.JSONObject;
 import org.w3c.dom.*;
 
 public class NumberParser {
-	private static DocumentBuilder builder;
 	private static DocumentBuilderFactory factory = DocumentBuilderFactory.newInstance();
 	private static DocumentBuilder loader;
 	private static Document numbersDoc;
@@ -129,8 +122,5 @@ public class NumberParser {
 		}
 		return numberElement;
 	}
-	
-	
-	
 	
 }
