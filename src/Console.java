@@ -21,6 +21,7 @@ public class Console {
 	private static LinkedList params = new LinkedList();
 	private static ListIterator itr;
 	private static NumberParser numberEngine;
+	private static CallsignEngine callsignEngine;
 	
 	private static ArrayList<String> numbersDict = new ArrayList<String>();
 	
@@ -30,7 +31,7 @@ public class Console {
 	public static void main(String[] args) throws Exception {
 		boolean exit = false;
 		numberEngine = new NumberParser();
-		CallsignEngine callsignEngine = new CallsignEngine();
+		callsignEngine = new CallsignEngine();
 		System.out.println("Console started. \"exit\" to quit.");
 		do {
 			params.clear();
