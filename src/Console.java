@@ -5,7 +5,7 @@ import java.util.LinkedList;
 import java.util.ListIterator;
 import java.util.Scanner;
 
-import edu.stockton.NumberParser;
+import edu.stockton.*;
 
 /**
  * Console interacts with the Language Processor.
@@ -30,6 +30,7 @@ public class Console {
 	public static void main(String[] args) throws Exception {
 		boolean exit = false;
 		numberEngine = new NumberParser();
+		CallsignEngine callsignEngine = new CallsignEngine();
 		System.out.println("Console started. \"exit\" to quit.");
 		do {
 			params.clear();
@@ -47,6 +48,7 @@ public class Console {
 					String param = line[1].trim();
 					
 					if(cmd.equalsIgnoreCase("tonum")) System.out.println(numberEngine.toNumeric(param));
+					if(cmd.equalsIgnoreCase("isCallsign")) System.out.println(callsignEngine.isCallsign(param));
 				}
 				
 				
