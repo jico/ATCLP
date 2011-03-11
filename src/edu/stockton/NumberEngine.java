@@ -7,7 +7,7 @@ import javax.xml.parsers.DocumentBuilder;
 import javax.xml.parsers.DocumentBuilderFactory;
 import org.w3c.dom.*;
 
-public class NumberParser {
+public class NumberEngine {
 	private static DocumentBuilderFactory factory = DocumentBuilderFactory.newInstance();
 	private static DocumentBuilder loader;
 	private static Document numbersDoc;
@@ -15,7 +15,7 @@ public class NumberParser {
 	private static NodeList numbers;
 	private static String xmlFilename = "numbers.xml";
 	
-	public NumberParser() throws Exception {
+	public NumberEngine() throws Exception {
 		loader = factory.newDocumentBuilder();
 		numbersDoc = loader.parse(xmlFilename);
 		tree = numbersDoc.getDocumentElement();
