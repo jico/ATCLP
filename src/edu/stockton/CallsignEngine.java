@@ -30,7 +30,7 @@ public class CallsignEngine {
 		return false;
 	}
 	
-	public static String getCompany(String designator) {
+	public static String designatorToCompany(String designator) {
 		if(!isDesignator(designator)) return "Unrecognized designator";
 		
 		for(int i = 0; i < callsigns.getLength(); i++) {
