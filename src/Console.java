@@ -49,7 +49,7 @@ public class Console {
 					String param = line[1].trim();
 					
 					if(cmd.equalsIgnoreCase("tonum")) System.out.println(numberEngine.toNumeric(param));
-					if(cmd.equalsIgnoreCase("isCallsign")) System.out.println(callsignEngine.isCallsign(param));
+					if(cmd.equalsIgnoreCase("isCallsign")) System.out.println(callsignEngine.isDesignator(param));
 					if(cmd.equalsIgnoreCase("getCompany")) System.out.println(callsignEngine.getCompany(param));
 					if(cmd.equalsIgnoreCase("getDesignator")) System.out.println(callsignEngine.getDesignator(param));
 				}

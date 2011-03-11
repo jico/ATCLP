@@ -22,7 +22,7 @@ public class CallsignEngine {
 		callsigns = tree.getChildNodes();
 	}
 	
-	public static boolean isCallsign(String text) {
+	public static boolean isDesignator(String text) {
 		for(int i = 0; i < callsigns.getLength(); i++) {
 			Element callsign = (Element) callsigns.item(i);
 			if(text.equalsIgnoreCase(callsign.getFirstChild().getTextContent())) return true;
@@ -31,7 +31,7 @@ public class CallsignEngine {
 	}
 	
 	public static String getCompany(String designator) {
-		if(!isCallsign(designator)) return "Unrecognized designator";
+		if(!isDesignator(designator)) return "Unrecognized designator";
 		
 		for(int i = 0; i < callsigns.getLength(); i++) {
 			Element callsign = (Element) callsigns.item(i);
