@@ -43,7 +43,7 @@ public class CallsignEngine {
 		return "Unrecognized designator";
 	}
 	
-	public static String getDesignator(String company) {		
+	public static String companyToDesignator(String company) {		
 		for(int i = 0; i < callsigns.getLength(); i++) {
 			Element callsign = (Element) callsigns.item(i);
 			if(company.equalsIgnoreCase(callsign.getLastChild().getTextContent())) {
