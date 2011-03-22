@@ -1,5 +1,7 @@
 package edu.stockton;
 
+import java.util.HashMap;
+
 import javax.xml.parsers.DocumentBuilder;
 import javax.xml.parsers.DocumentBuilderFactory;
 
@@ -15,42 +17,56 @@ public class CallsignEngine {
 	private static NodeList callsignsList;
 	private static String xmlFilename = "callsignsTestSet.xml";
 	
+	private static HashMap callsigns;
+	
 	public CallsignEngine() throws Exception {
 		loader = factory.newDocumentBuilder();
 		callsignsDoc = loader.parse(xmlFilename);
 		tree = callsignsDoc.getDocumentElement();
 		callsignsList = tree.getChildNodes();
-	}
-	
-	public static boolean isDesignator(String text) {
-		for(int i = 0; i < callsignsList.getLength(); i++) {
-			Element callsign = (Element) callsignsList.item(i);
-			if(text.equalsIgnoreCase(callsign.getFirstChild().getTextContent())) return true;
-		}
-		return false;
-	}
-	
-	public static String designatorToCompany(String designator) {
-		if(!isDesignator(designator)) return "Unrecognized designator";
 		
+		callsigns = new HashMap();
 		for(int i = 0; i < callsignsList.getLength(); i++) {
-			Element callsign = (Element) callsignsList.item(i);
-			if(designator.equalsIgnoreCase(callsign.getFirstChild().getTextContent())) {
-				return callsign.getLastChild().getTextContent();
+			NodeList callsignNodes = callsignsList.item(i).getChildNodes();
+			
+			// Number constructor params
+			String telephony = "";
+			String designator = "";
+			String company = "";
+			
+			// Retrieve number data 
+			for(int j = 0; j < callsignNodes.getLength(); j++) {
+				Element callsignNode = (Element) callsignNodes.item(j);
+				String xmlTag = callsignNode.getTagName();
+				
+				if(xmlTag.equalsIgnoreCase("telephony")) telephony = callsignNode.getTextContent().toLowerCase();
+				if(xmlTag.equalsIgnoreCase("designator")) designator = callsignNode.getTextContent().toLowerCase();
+				if(xmlTag.equalsIgnoreCase("company")) company = callsignNode.getTextContent().toLowerCase();
+				
 			}
+			
+			Callsign callsign = new Callsign(telephony, designator, company);
+			callsigns.put(telephony, callsign);
 		}
-		
-		return "Unrecognized designator";
 	}
 	
-	public static String companyToDesignator(String company) {		
-		for(int i = 0; i < callsignsList.getLength(); i++) {
-			Element callsign = (Element) callsignsList.item(i);
-			if(company.equalsIgnoreCase(callsign.getLastChild().getTextContent())) {
-				return callsign.getFirstChild().getTextContent();
-			}
-		}
+	public static void main(String[] args) throws Exception {
+		CallsignEngine ce = new CallsignEngine();
+		System.out.println(isCallsign("cactus"));
 		
-		return "Unrecognized company";
+	}
+	
+	public static boolean isCallsign(String s) {
+		return callsigns.containsKey(s.toLowerCase());
+	}
+	
+	public static String telephonyToDesignator(String telephony) {
+		Callsign callsign = (Callsign) callsigns.get(telephony.toLowerCase());
+		return callsign.getDesignator();
+	}
+	
+	public static String telephonyToCompany(String telephony) {
+		Callsign callsign = (Callsign) callsigns.get(telephony.toLowerCase());
+		return callsign.getCompany();
 	}
 }
