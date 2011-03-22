@@ -50,19 +50,13 @@ public class CallsignEngine {
 		}
 	}
 	
-	public static void main(String[] args) throws Exception {
-		CallsignEngine ce = new CallsignEngine();
-		System.out.println(isCallsign("cactus"));
-		
-	}
-	
 	public static boolean isCallsign(String s) {
 		return callsigns.containsKey(s.toLowerCase());
 	}
 	
 	public static String telephonyToDesignator(String telephony) {
 		Callsign callsign = (Callsign) callsigns.get(telephony.toLowerCase());
-		return callsign.getDesignator();
+		return callsign.getDesignator().toUpperCase();
 	}
 	
 	public static String telephonyToCompany(String telephony) {

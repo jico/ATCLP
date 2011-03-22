@@ -74,7 +74,6 @@ public class NumberEngine {
 			current = current.toLowerCase();
 			
 			if(current.equalsIgnoreCase("hundred")) {
-				
 				if(cursor.hasNext()) {
 					String next = cursor.next();
 					int nextVal = getValue(next);
