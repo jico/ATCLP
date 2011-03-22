@@ -1,80 +1,41 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
 <callsigns>
-     <callsign>
-          <designator>ABE</designator>
-          <company>ABAN AIR</company>
-     </callsign>
+	<callsign>
+		<telephony>ABAN</telephony>
+		<designator>ABE</designator>
+		<company>ABAN AIR</company>
+	</callsign>
+
+	<callsign>
+		<telephony>CANDLER</telephony>
+		<designator>ASQ</designator>
+		<company>ATLANTIC SOUTHEAST AIRLINES</company>
+	</callsign>
+
+	<callsign>
+		<telephony>AERO FENIX</telephony>
+		<designator>FNX</designator>
+		<company>AERO FENIX</company>
+	</callsign>
+
+	<callsign>
+		<telephony>BRAZILIAN AIR FORCE</telephony>
+		<designator>BRS</designator>
+		<company>BRAZILIAN AIR FORCE</company>
+	</callsign>
 
      <callsign>
-          <designator>ASQ</designator>
-          <company>ATLANTIC SOUTHEAST AIRLINES</company>
-     </callsign>
+		<telephony>BRITISH MEDICAL</telephony>
+		<designator>BMD</designator>
+		<company>BRITISH MEDICAL CHARTER</company>
+	</callsign>
 
-     <callsign>
-          <designator>FNX</designator>
-          <company>AERO FENIX</company>
-     </callsign>
-
-     <callsign>
-          <designator>BRS</designator>
-          <company>BRAZILIAN AIR FORCE</company>
-     </callsign>
-
-     <callsign>
-          <designator>BMD</designator>
-          <company>BRITISH MEDICDAL CHARTER</company>
-     </callsign>
-
-     <callsign>
-          <designator>EFA</designator>
-          <company>EXPRESS FREIGHTERS AUSTRALIA</company>
-     </callsign>
-
-     <callsign>
-          <designator>ETS</designator>
-          <company>AVITRANS NORDIC AB</company>
-     </callsign>
-
-     <callsign>
-          <designator>FYD</designator>
-          <company>FLYING DEVIL SA</company>
-     </callsign>
-
-     <callsign>
-          <designator>KMF</designator>
-          <company>KAM AIR</company>
-     </callsign>
-
-     <callsign>
-          <designator>MLL</designator>
-          <company>AEROCLUB DE MALLORC</company>
-     </callsign>
-
-     <callsign>
-          <designator>ONT</designator>
-          <company>GOVERNMENT OF ONTARIO</company>
-     </callsign>
-
-     <callsign>
-          <designator>VIA</designator>
-          <company>SUNDT AIR MANAGEMENT</company>
-     </callsign>
-
-     <callsign>
-          <designator>SIA</designator>
-          <company>SINGAPORE AIRLINES LIMITED</company>
-     </callsign>
-
-     <callsign>
-          <designator>URJ</designator>
-          <company>STAR AIR M/S</company>
-     </callsign>
-
-     <callsign>
-          <designator>WAR</designator>
-          <company> NZ WARBIRDS ASSOCIATION INC</company>
-     </callsign>
+	<callsign>
+		<telephony>CACTUS</telephony>
+		<designator>AWE</telephony>
+		<company>US AIRWAYS (PHOENIX, AZ)</company>
+	</callsign>
 
 </callsigns>
 
