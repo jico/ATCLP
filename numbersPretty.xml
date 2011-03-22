@@ -17,6 +17,12 @@
 	</number>
 	
 	<number>
+		<text>zero</text>
+		<value>0</value>
+		<weight>1</weight>
+	</number>
+	
+	<number>
 		<text>one</text>
 		<value>1</value>
 		<weight>1</weight>
