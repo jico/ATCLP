@@ -12,19 +12,19 @@ public class CallsignEngine {
 	private static DocumentBuilder loader;
 	private static Document callsignsDoc;
 	private static Element tree;
-	private static NodeList callsigns;
+	private static NodeList callsignsList;
 	private static String xmlFilename = "callsignsTestSet.xml";
 	
 	public CallsignEngine() throws Exception {
 		loader = factory.newDocumentBuilder();
 		callsignsDoc = loader.parse(xmlFilename);
 		tree = callsignsDoc.getDocumentElement();
-		callsigns = tree.getChildNodes();
+		callsignsList = tree.getChildNodes();
 	}
 	
 	public static boolean isDesignator(String text) {
-		for(int i = 0; i < callsigns.getLength(); i++) {
-			Element callsign = (Element) callsigns.item(i);
+		for(int i = 0; i < callsignsList.getLength(); i++) {
+			Element callsign = (Element) callsignsList.item(i);
 			if(text.equalsIgnoreCase(callsign.getFirstChild().getTextContent())) return true;
 		}
 		return false;
@@ -33,8 +33,8 @@ public class CallsignEngine {
 	public static String designatorToCompany(String designator) {
 		if(!isDesignator(designator)) return "Unrecognized designator";
 		
-		for(int i = 0; i < callsigns.getLength(); i++) {
-			Element callsign = (Element) callsigns.item(i);
+		for(int i = 0; i < callsignsList.getLength(); i++) {
+			Element callsign = (Element) callsignsList.item(i);
 			if(designator.equalsIgnoreCase(callsign.getFirstChild().getTextContent())) {
 				return callsign.getLastChild().getTextContent();
 			}
@@ -44,8 +44,8 @@ public class CallsignEngine {
 	}
 	
 	public static String companyToDesignator(String company) {		
-		for(int i = 0; i < callsigns.getLength(); i++) {
-			Element callsign = (Element) callsigns.item(i);
+		for(int i = 0; i < callsignsList.getLength(); i++) {
+			Element callsign = (Element) callsignsList.item(i);
 			if(company.equalsIgnoreCase(callsign.getLastChild().getTextContent())) {
 				return callsign.getFirstChild().getTextContent();
 			}
