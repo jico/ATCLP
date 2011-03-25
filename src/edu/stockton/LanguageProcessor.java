@@ -11,16 +11,14 @@ public class LanguageProcessor {
 	private static CallsignEngine callsignEngine;
 	
 	private static ArrayList<String> tokens;
-	private static ArrayList<String> tags;
-	private static ArrayList<String> components;
+	private static ArrayList<Component> components;
 	
 	public LanguageProcessor() throws Exception {
 		numberEngine = new NumberEngine();
 		callsignEngine = new CallsignEngine();
 		
-		tags = new ArrayList<String>();
 		tokens = new ArrayList<String>();
-		components = new ArrayList<String>();
+		components = new ArrayList<Component>();
 	}
 	
 	public static void parse(String command) {
@@ -32,25 +30,45 @@ public class LanguageProcessor {
 		
 		// Tag each token and group
 		String currentTag = "";
-		int componentCursor = -1;
+		String componentText = "";
 		for(int i = 0; i < tokens.size(); i++) {
 			
 			String thisTag = tag(tokens.get(i));
 			
-			if(thisTag.equals(currentTag)) {
-				components.set(componentCursor, components.get(componentCursor) + tokens.get(i) + " ");
-				
-			} else {				
+			if(thisTag.equals(currentTag) && i < tokens.size()-1) {
+				componentText += tokens.get(i) + " ";	
+			} else if(i == 0) {
 				currentTag = thisTag;
-				componentCursor++;
-				components.add(componentCursor, tokens.get(i) + " ");
-				
+				componentText += tokens.get(i) + " ";
+			} else {
+				if(i == tokens.size()-1) componentText += tokens.get(i) + " ";
+				Component thisComponent = new Component(componentText, currentTag);
+				components.add(thisComponent);
+				componentText = "";
+				componentText += tokens.get(i) + " ";
+				currentTag = thisTag;
+			}
+
+		}
+		
+		// Do conversions for each token
+		for(int i = 0; i < components.size(); i++) {
+			Component current = components.get(i);
+			String type = current.getType();
+			
+			if(type.equals("number")) {
+				current.setText(NumberEngine.toNumeric(current.getText()));
+				components.set(i, current);
+			}
+			if(type.equals("callsign")) {
+				current.setText(CallsignEngine.telephonyToDesignator(current.getText()));
+				components.set(i, current);
 			}
 			
 		}
 		
-			
 		
+
 	}
 	
 	public static String tag(String token) {
@@ -64,10 +82,9 @@ public class LanguageProcessor {
 	public static void main(String[] args) throws Exception {
 		LanguageProcessor LP = new LanguageProcessor();
 		String test = "Cactus four seven five maintain flight level three three zero";
-				
-		parse(test);
-		for(String s : components) System.out.println(s);
 		
+		parse(test);
+		for(Component s : components) System.out.println(s.getText() + " /" + s.getType());
 		
 	}
 	
