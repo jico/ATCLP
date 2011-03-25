@@ -49,6 +49,7 @@ public class Console {
 					String param = line[1].trim();
 					
 					if(cmd.equalsIgnoreCase("tonum")) System.out.println(numberEngine.toNumeric(param));
+					if(cmd.equalsIgnoreCase("identify")) System.out.println(callsignEngine.telephonyToDesignator(param));
 					
 				}
 				
