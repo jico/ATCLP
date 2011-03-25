@@ -19,18 +19,18 @@ When you run the Console, you should see:
 	
 You can then invoke predefined methods on strings. 
 Method invocation syntax is: 
-	__method__: _parameter_
+	method: parameter
 	
 The _parameter_ is typically a String.
 
 The currently available __methods__ are:
 
-*	__toNum__ Accepts a "text" number and outputs the numeric representation
+*	__toNum__ Accepts a "text" number and outputs the numeric representation.
 	For example:
 		toNum: thirty three hundred
 	Outputs:
 		3300
-*	__identify__ Accepts a telephony callsign and outputs the three-letter designator
+*	__identify__ Accepts a telephony callsign and outputs the three-letter designator.
 	For example:
 		identify: Cactus
 	Outputs:
