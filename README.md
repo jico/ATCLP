@@ -22,7 +22,9 @@ Method invocation syntax is:
 	__method__: _parameter_
 	
 The _parameter_ is typically a String.
+
 The currently available __methods__ are:
+
 *	__toNum__ Accepts a "text" number and outputs the numeric representation
 	For example:
 		toNum: thirty three hundred
