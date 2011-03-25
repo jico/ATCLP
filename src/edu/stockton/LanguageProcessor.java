@@ -79,13 +79,4 @@ public class LanguageProcessor {
 	}
 	
 	
-	public static void main(String[] args) throws Exception {
-		LanguageProcessor LP = new LanguageProcessor();
-		String test = "Cactus four seven five maintain flight level three three zero";
-		
-		parse(test);
-		for(Component s : components) System.out.println(s.getText() + " /" + s.getType());
-		
-	}
-	
 }
