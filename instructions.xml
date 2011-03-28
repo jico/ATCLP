@@ -1,0 +1,2 @@
+<?xml version="1.0" encoding="UTF-8"?><instructions><instruction><phrase>descend and maintain (flight level|mach point) [0-9]*</phrase><type>altitude</type><params><param><type>altitude</type><input>flight level ([0-9]*)</input><output>FL$1</output></param><param><type>speed</type><input>mach point ([0-9]*)</input><output>.$1M</output></param></params></instruction></instructions>
+
