@@ -17,6 +17,17 @@ public class Instruction {
 		this.params = params;
 	}
 	
+	public String getPhrase() {
+		return phrase;
+	}
+	
+	public String getType() {
+		return type;
+	}
+	
+	public ArrayList<Param> getParams() {
+		return params;
+	}
 	
 	
 	
