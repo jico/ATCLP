@@ -81,9 +81,7 @@ public class LanguageProcessor {
 		for(Component component : components) {
 			phrase += component.getText() + " ";
 		}
-		System.out.println(phrase);
 		ParsedInstruction instruction = instructionEngine.parse(phrase);
-		System.out.println(instruction);
 		
 		ATCCommand parsed = new ATCCommand(recipient, instruction.getType(), instruction.getParam());
 		return parsed;
