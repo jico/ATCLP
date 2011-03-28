@@ -22,6 +22,8 @@ public class Console {
 	private static ListIterator itr;
 	private static NumberEngine numberEngine;
 	private static CallsignEngine callsignEngine;
+	private static InstructionEngine instructionEngine;
+	private static LanguageProcessor LP;
 	
 	private static ArrayList<String> numbersDict = new ArrayList<String>();
 	
@@ -32,6 +34,9 @@ public class Console {
 		boolean exit = false;
 		numberEngine = new NumberEngine();
 		callsignEngine = new CallsignEngine();
+		instructionEngine = new InstructionEngine();
+		LP = new LanguageProcessor();
+		
 		System.out.println("Console started. \"exit\" to quit.");
 		do {
 			params.clear();
@@ -48,20 +53,15 @@ public class Console {
 					String cmd = line[0].trim();
 					String param = line[1].trim();
 					
+					if(cmd.equalsIgnoreCase("parse")) System.out.println(LP.parse(param).toXML());
 					if(cmd.equalsIgnoreCase("tonum")) System.out.println(numberEngine.toNumeric(param));
 					if(cmd.equalsIgnoreCase("identify")) System.out.println(callsignEngine.telephonyToDesignator(param));
-					
-				}
-				
-				
-				/*
-				itr = params.listIterator();
-				
-				while(itr.hasNext()) {
-					String current = (String) itr.next();
-					System.out.println(current);
-				}
-				*/	
+					if(cmd.equalsIgnoreCase("params")) {
+						System.out.println(instructionEngine.parse(param).toString());
+					}
+					if(cmd.equalsIgnoreCase("instruction")) System.out.println(instructionEngine.isInstruction(param));
+
+				}	
 				
 			}
 			
