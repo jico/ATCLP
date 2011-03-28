@@ -9,6 +9,7 @@ import javax.swing.text.html.HTMLDocument.Iterator;
 public class LanguageProcessor {
 	private static NumberEngine numberEngine;
 	private static CallsignEngine callsignEngine;
+	private static InstructionEngine instructionEngine;
 	
 	private static ArrayList<String> tokens;
 	private static ArrayList<Component> components;
@@ -16,12 +17,13 @@ public class LanguageProcessor {
 	public LanguageProcessor() throws Exception {
 		numberEngine = new NumberEngine();
 		callsignEngine = new CallsignEngine();
+		instructionEngine = new InstructionEngine();
 		
 		tokens = new ArrayList<String>();
 		components = new ArrayList<Component>();
 	}
 	
-	public static void parse(String command) {
+	public static ATCCommand parse(String command) {
 		String[] words = command.split(" ");
 		for(String word : words) {
 			tokens.add(word);
@@ -51,23 +53,40 @@ public class LanguageProcessor {
 
 		}
 		
+		String recipient = "";
+		
 		// Do conversions for each token
 		for(int i = 0; i < components.size(); i++) {
 			Component current = components.get(i);
 			String type = current.getType();
 			
-			if(type.equals("number")) {
+			
+			if(type.equals("number")) {				
 				current.setText(NumberEngine.toNumeric(current.getText()));
 				components.set(i, current);
+				
+				// Recognize recipient and build recipient string
+				if(recipient == "" && components.get(i-1).getType() == "callsign") {
+					recipient = components.get(i-1).getText() + components.get(i).getText();
+				}
+				
 			}
 			if(type.equals("callsign")) {
 				current.setText(CallsignEngine.telephonyToDesignator(current.getText()));
 				components.set(i, current);
 			}
-			
 		}
 		
+		String phrase = "";
+		for(Component component : components) {
+			phrase += component.getText() + " ";
+		}
+		System.out.println(phrase);
+		ParsedInstruction instruction = instructionEngine.parse(phrase);
+		System.out.println(instruction);
 		
+		ATCCommand parsed = new ATCCommand(recipient, instruction.getType(), instruction.getParam());
+		return parsed;
 
 	}
 	
@@ -76,6 +95,16 @@ public class LanguageProcessor {
 		if(numberEngine.isNumber(token)) tag = "number";
 		if(callsignEngine.isCallsign(token)) tag = "callsign";
 		return tag;
+	}
+	
+	public static void main(String args[]) throws Exception {
+		LanguageProcessor LP = new LanguageProcessor();
+		
+		
+		
+		System.out.println(parse("cactus twenty eighty descend and maintain mach point seven five").toXML());
+		
+		
 	}
 	
 	

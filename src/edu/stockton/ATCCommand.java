@@ -31,15 +31,15 @@ public class ATCCommand {
 		return parameter;	
 		}
 	
-	public void setRecipient(String recipient){
+	public void setRecipient(String recipient) {
 		this.recipient = recipient;
 	}
 	
-	public void setType(String type){
+	public void setType(String type) {
 		this.type = type;
 	}
 	
-	public void setParameter(String parameter){
+	public void setParameter(String parameter) {
 		this.parameter = parameter;
 	}
 	
