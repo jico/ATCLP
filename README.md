@@ -25,6 +25,11 @@ The _parameter_ is typically a String.
 
 The currently available __methods__ are:
 
+*	__parse__ Main purpose method. Takes an ATC command string and returns an ATCCommand object containing the recognized recipient, type, and parameter. 
+	For example:
+		parse: Cactus fourteen fifty descend and maintain flight level three three zero
+	The above returns an ATCCommand object. You can then retrieve the information in xml format through the object _toString_ method, which produces:
+		<ATCCommand><recipient>AWE1450</recipient><type>altitude</type><parameter>FL330</parameter></ATCCommand>
 *	__toNum__ Accepts a "text" number and outputs the numeric representation.
 	For example:
 		toNum: thirty three hundred
@@ -35,5 +40,13 @@ The currently available __methods__ are:
 		identify: Cactus
 	Outputs:
 		AWE
+*	__params__ Identifies the parameters in a command string.
+	For example:
+		params: Cactus fourteen fifty descend and maintain flight level three three zero
+	Outputs:
+		phrase[Cactus fourteen fifty descend and maintain flight level three three zero]
+		type[altitude]
+		param[FL]
+*	__instruction__ Checks if the passed string is a valid instruction. Returns the index in the xml library if the passed string is valid. Returns -1 otherwise. (Essentially the _isInstruction_ method of the InstructionEngine class).
 		
 Methods are not case-sensitive.
