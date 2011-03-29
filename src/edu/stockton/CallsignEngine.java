@@ -15,7 +15,7 @@ public class CallsignEngine {
 	private static Document callsignsDoc;
 	private static Element tree;
 	private static NodeList callsignsList;
-	private static String xmlFilename = "callsignsTestSet.xml";
+	private static String xmlFilename = "callsigns.xml";
 	
 	private static HashMap callsigns;
 	
