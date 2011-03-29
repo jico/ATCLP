@@ -8,10 +8,12 @@ import java.util.Scanner;
 import edu.stockton.*;
 
 /**
- * Console interacts with the Language Processor.
+ * Console interacts with the Language Processor, as well as
+ * the NumberEngine, CallsignEngine, and InstructionEngine using
+ * predefined commands.
  * 
  * @author Jico Baligod
- * @version 0.1a
+ * @version 1.0b
  *
  */
 public class Console {
@@ -25,13 +27,11 @@ public class Console {
 	private static InstructionEngine instructionEngine;
 	private static LanguageProcessor LP;
 	
-	private static ArrayList<String> numbersDict = new ArrayList<String>();
-	
-	/**
-	 * @param args
-	 */
+
 	public static void main(String[] args) throws Exception {
 		boolean exit = false;
+		
+		// Initialize Engines and LP
 		numberEngine = new NumberEngine();
 		callsignEngine = new CallsignEngine();
 		instructionEngine = new InstructionEngine();
