@@ -19,11 +19,15 @@ public class CallsignEngine {
 	
 	private static HashMap callsigns;
 	
-	public CallsignEngine() throws Exception {
-		loader = factory.newDocumentBuilder();
-		callsignsDoc = loader.parse(xmlFilename);
-		tree = callsignsDoc.getDocumentElement();
-		callsignsList = tree.getChildNodes();
+	public static void init() {
+		try {
+			loader = factory.newDocumentBuilder();
+			callsignsDoc = loader.parse(xmlFilename);
+			tree = callsignsDoc.getDocumentElement();
+			callsignsList = tree.getChildNodes();
+		} catch(Exception e) {
+			e.printStackTrace();
+		}
 		
 		callsigns = new HashMap();
 		for(int i = 0; i < callsignsList.getLength(); i++) {
@@ -51,15 +55,18 @@ public class CallsignEngine {
 	}
 	
 	public static boolean isCallsign(String s) {
+		if(callsigns == null) init();
 		return callsigns.containsKey(s.toLowerCase());
 	}
 	
 	public static String telephonyToDesignator(String telephony) {
+		if(callsigns == null) init();
 		Callsign callsign = (Callsign) callsigns.get(telephony.toLowerCase());
 		return callsign.getDesignator().toUpperCase();
 	}
 	
 	public static String telephonyToCompany(String telephony) {
+		if(callsigns == null) init();
 		Callsign callsign = (Callsign) callsigns.get(telephony.toLowerCase());
 		return callsign.getCompany();
 	}
