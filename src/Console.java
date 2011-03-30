@@ -21,15 +21,10 @@ public class Console {
 	private static String input;
 	private static String[] line;
 	private static LinkedList params = new LinkedList();
-	private static ListIterator itr;
-	private static LanguageProcessor LP;
-	
+	private static ListIterator itr;	
 
 	public static void main(String[] args) throws Exception {
 		boolean exit = false;
-		
-		// Initialize Engines and LP
-		LP = new LanguageProcessor();
 		
 		System.out.println("Console started. \"exit\" to quit.");
 		do {
@@ -47,7 +42,7 @@ public class Console {
 					String cmd = line[0].trim();
 					String param = line[1].trim();
 					
-					if(cmd.equalsIgnoreCase("parse")) System.out.println(LP.parse(param).toXML());
+					if(cmd.equalsIgnoreCase("parse")) System.out.println(LanguageProcessor.parse(param).toXML());
 					if(cmd.equalsIgnoreCase("tonum")) System.out.println(NumberEngine.toNumeric(param));
 					if(cmd.equalsIgnoreCase("identify")) System.out.println(CallsignEngine.telephonyToDesignator(param));
 					if(cmd.equalsIgnoreCase("params")) {

@@ -7,23 +7,11 @@ import java.util.ListIterator;
 import javax.swing.text.html.HTMLDocument.Iterator;
 
 public class LanguageProcessor {
-	private static NumberEngine numberEngine;
-	private static CallsignEngine callsignEngine;
-	private static InstructionEngine instructionEngine;
-	
-	private static ArrayList<String> tokens;
-	private static ArrayList<Component> components;
-	
-	public LanguageProcessor() throws Exception {
-		numberEngine = new NumberEngine();
-		callsignEngine = new CallsignEngine();
-		instructionEngine = new InstructionEngine();
-		
-		tokens = new ArrayList<String>();
-		components = new ArrayList<Component>();
-	}
 	
 	public static ATCCommand parse(String command) {
+		ArrayList<String> tokens = new ArrayList<String>();
+		ArrayList<Component> components = new ArrayList<Component>();
+		
 		String[] words = command.split(" ");
 		for(String word : words) {
 			tokens.add(word);
@@ -81,7 +69,7 @@ public class LanguageProcessor {
 		for(Component component : components) {
 			phrase += component.getText() + " ";
 		}
-		ParsedInstruction instruction = instructionEngine.parse(phrase);
+		ParsedInstruction instruction = InstructionEngine.parse(phrase);
 		
 		ATCCommand parsed = new ATCCommand(recipient, instruction.getType(), instruction.getParam());
 		return parsed;
@@ -90,19 +78,9 @@ public class LanguageProcessor {
 	
 	public static String tag(String token) {
 		String tag = "unidentified";
-		if(numberEngine.isNumber(token)) tag = "number";
-		if(callsignEngine.isCallsign(token)) tag = "callsign";
+		if(NumberEngine.isNumber(token)) tag = "number";
+		if(CallsignEngine.isCallsign(token)) tag = "callsign";
 		return tag;
-	}
-	
-	public static void main(String args[]) throws Exception {
-		LanguageProcessor LP = new LanguageProcessor();
-		
-		
-		
-		System.out.println(parse("cactus twenty eighty descend and maintain mach point seven five").toXML());
-		
-		
 	}
 	
 	
