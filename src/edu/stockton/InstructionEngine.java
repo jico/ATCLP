@@ -22,11 +22,15 @@ public class InstructionEngine {
 	
 	private static ArrayList<Instruction> instructions;
 	
-	public InstructionEngine() throws Exception {
-		loader = factory.newDocumentBuilder();
-		instructionsDoc = loader.parse(xmlFilename);
-		tree = instructionsDoc.getDocumentElement();
-		instructionsList = tree.getChildNodes();
+	public static void init() {
+		try {
+			loader = factory.newDocumentBuilder();
+			instructionsDoc = loader.parse(xmlFilename);
+			tree = instructionsDoc.getDocumentElement();
+			instructionsList = tree.getChildNodes();
+		} catch(Exception e) {
+			e.printStackTrace();
+		}
 		
 		instructions = new ArrayList<Instruction>();
 		for(int i = 0; i < instructionsList.getLength(); i++) {
@@ -81,6 +85,8 @@ public class InstructionEngine {
 	}
 	
 	public static ParsedInstruction parse(String phrase) {
+		if(instructions == null) init();
+		
 		int index = isInstruction(phrase);
 		String type = instructions.get(index).getType();
 		Param param = null;
@@ -115,6 +121,8 @@ public class InstructionEngine {
 	 * @return Index value in the instructions ArrayList of the InstructionEngine class.
 	 */
 	public static int isInstruction(String phrase) {
+		if(instructions == null) init();
+		
 		for(int i = 0; i < instructions.size(); i++) {
 			String regex = instructions.get(i).getPhrase();
 			
