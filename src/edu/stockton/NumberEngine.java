@@ -15,14 +15,23 @@ public class NumberEngine {
 	private static Element tree;
 	private static NodeList numbersList;
 	private static String xmlFilename = "numbers.xml";
-	
 	private static HashMap numbers;
 	
-	public NumberEngine() throws Exception {
-		loader = factory.newDocumentBuilder();
-		numbersDoc = loader.parse(xmlFilename);
-		tree = numbersDoc.getDocumentElement();
-		numbersList = tree.getChildNodes();
+	/**
+	 * Initializes the engine and loads number library.
+	 * Optional to implicitly initialize, since methods
+	 * initialize the engine if it hasn't been.
+	 */
+	public static void init() {
+		try {
+			loader = factory.newDocumentBuilder();
+			numbersDoc = loader.parse(xmlFilename);
+			tree = numbersDoc.getDocumentElement();
+			numbersList = tree.getChildNodes();
+		} catch(Exception e) {
+			e.printStackTrace();
+		}
+		
 		
 		numbers = new HashMap();
 		for(int i = 0; i < numbersList.getLength(); i++) {
@@ -46,8 +55,7 @@ public class NumberEngine {
 			
 			Number number = new Number(text, value, weight);
 			numbers.put(text, number);
-			
-			
+	
 		}
 	}
 	
@@ -58,10 +66,13 @@ public class NumberEngine {
 	 * @return True if the word represents a number, false otherwise
 	 */
 	public static boolean isNumber(String s) {
+		if(numbers == null) init();
 		return numbers.containsKey(s);
 	}
 	
 	public static String toNumeric(String text) {
+		if(numbers == null) init();
+		
 		String[] tokens = text.split("\\-|\\ ");
 
 		LinkedList<String> numberTokens = new LinkedList<String>();
@@ -111,6 +122,8 @@ public class NumberEngine {
 	 * @return integer value of number word, returns -1 if string is NAN
 	 */
 	public static int getValue(String s) {
+		if(numbers == null) init();
+		
 		Number number = (Number) numbers.get(s);
 		return number.getValue();
 		
@@ -122,9 +135,10 @@ public class NumberEngine {
 	 * @return integer weight value of the string, returns -1 if string is NAN
 	 */
 	public static int getWeight(String s) {
+		if(numbers == null) init();
+		
 		Number number = (Number) numbers.get(s);
 		return number.getWeight();
 	}
 
-	
 }

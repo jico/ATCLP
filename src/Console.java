@@ -22,7 +22,6 @@ public class Console {
 	private static String[] line;
 	private static LinkedList params = new LinkedList();
 	private static ListIterator itr;
-	private static NumberEngine numberEngine;
 	private static CallsignEngine callsignEngine;
 	private static InstructionEngine instructionEngine;
 	private static LanguageProcessor LP;
@@ -32,7 +31,6 @@ public class Console {
 		boolean exit = false;
 		
 		// Initialize Engines and LP
-		numberEngine = new NumberEngine();
 		callsignEngine = new CallsignEngine();
 		instructionEngine = new InstructionEngine();
 		LP = new LanguageProcessor();
@@ -54,7 +52,7 @@ public class Console {
 					String param = line[1].trim();
 					
 					if(cmd.equalsIgnoreCase("parse")) System.out.println(LP.parse(param).toXML());
-					if(cmd.equalsIgnoreCase("tonum")) System.out.println(numberEngine.toNumeric(param));
+					if(cmd.equalsIgnoreCase("tonum")) System.out.println(NumberEngine.toNumeric(param));
 					if(cmd.equalsIgnoreCase("identify")) System.out.println(callsignEngine.telephonyToDesignator(param));
 					if(cmd.equalsIgnoreCase("params")) {
 						System.out.println(instructionEngine.parse(param).toString());
