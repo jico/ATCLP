@@ -8,6 +8,12 @@ import javax.swing.text.html.HTMLDocument.Iterator;
 
 public class LanguageProcessor {
 	
+	/**
+	 * Interprets a complete ATC command string.
+	 * Parses the string and returns an ATCCommand object.
+	 * @param command The ATC command sentence
+	 * @return An ATCCommand object containing the parsed elements
+	 */
 	public static ATCCommand parse(String command) {
 		ArrayList<String> tokens = new ArrayList<String>();
 		ArrayList<Component> components = new ArrayList<Component>();
@@ -76,12 +82,17 @@ public class LanguageProcessor {
 
 	}
 	
-	public static String tag(String token) {
+	/**
+	 * Tags a passed token string as a number, callsign, or otherwise
+	 * unidentified.
+	 * @param token The string to tag
+	 * @return The tag (either "number", "callsign", or "unidentified")
+	 */
+	private static String tag(String token) {
 		String tag = "unidentified";
 		if(NumberEngine.isNumber(token)) tag = "number";
 		if(CallsignEngine.isCallsign(token)) tag = "callsign";
 		return tag;
 	}
-	
 	
 }
