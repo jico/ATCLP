@@ -50,7 +50,7 @@ The currently available __methods__ are:
 	Outputs:
 		phrase[Cactus fourteen fifty descend and maintain flight level three three zero]
 		type[altitude]
-		param[FL]
+		param[FL330]
 *	__instruction__ Checks if the passed string is a valid instruction. Returns the index in the xml library if the passed string is valid. Returns -1 otherwise. (Essentially the _isInstruction_ method of the InstructionEngine class).
 		
 Methods are not case-sensitive.
