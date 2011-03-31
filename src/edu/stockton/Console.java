@@ -1,11 +1,10 @@
+package edu.stockton;
 import java.io.FileNotFoundException;
 import java.io.FileReader;
 import java.util.ArrayList;
 import java.util.LinkedList;
 import java.util.ListIterator;
 import java.util.Scanner;
-
-import edu.stockton.*;
 
 /**
  * Console interacts with the Language Processor, as well as
