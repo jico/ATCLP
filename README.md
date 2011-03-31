@@ -7,6 +7,10 @@ Realistic traffic flows and voice communications are used in the ATC simulations
 
 ---
 
+## Javadoc
+
+The latest Javadoc of the edu.stockton package containing the ATCLP can be found [here](http://www.jicobaligod.com/projects/ATCLP).
+
 ## Console
 
 Currently the Console class is used for testing purposes to call Engine methods, parse test strings, etc.
