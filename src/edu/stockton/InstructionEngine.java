@@ -22,6 +22,11 @@ public class InstructionEngine {
 	
 	private static ArrayList<Instruction> instructions;
 	
+	/**
+	 * Loads the instruction library into the static hash table. 
+	 * The engine doesn't need to be implicitly initialized,
+	 * each method does a check for initialization before proceeding.
+	 */
 	public static void init() {
 		try {
 			loader = factory.newDocumentBuilder();
@@ -84,6 +89,11 @@ public class InstructionEngine {
 		}
 	}
 	
+	/**
+	 * Identifies an instruction in a passed string sentence.
+	 * @param phrase The phrase to identify
+	 * @return A ParsedInstruction object of the identified instruction
+	 */
 	public static ParsedInstruction parse(String phrase) {
 		if(instructions == null) init();
 		

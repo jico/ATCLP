@@ -16,7 +16,12 @@ public class Instruction {
 	private String type;
 	private ArrayList<Param> params;
 	
-	
+	/**
+	 * Constructs an Instruction object
+	 * @param phrase The regex phrase of the instruction
+	 * @param type The type of the instruction
+	 * @param params A list of parameter Param objects
+	 */
 	public Instruction(String phrase, String type, ArrayList<Param> params) {
 		this.phrase = phrase;
 		this.type = type;
@@ -46,7 +51,5 @@ public class Instruction {
 	public ArrayList<Param> getParams() {
 		return params;
 	}
-	
-	
 	
 }

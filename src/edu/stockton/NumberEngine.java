@@ -8,6 +8,12 @@ import javax.xml.parsers.DocumentBuilder;
 import javax.xml.parsers.DocumentBuilderFactory;
 import org.w3c.dom.*;
 
+/**
+ * General number interpreter.
+ * Handles textual number representations and converts
+ * them to numerical representations.
+ *
+ */
 public class NumberEngine {
 	private static DocumentBuilderFactory factory = DocumentBuilderFactory.newInstance();
 	private static DocumentBuilder loader;
@@ -70,6 +76,13 @@ public class NumberEngine {
 		return numbers.containsKey(s);
 	}
 	
+	/**
+	 * Takes a textually represented number and converts it
+	 * to numeric format.
+	 * i.e. "fourteen hundred" converts to "1400"
+	 * @param text The number in word format
+	 * @return The number converted to numeric format
+	 */
 	public static String toNumeric(String text) {
 		if(numbers == null) init();
 		
