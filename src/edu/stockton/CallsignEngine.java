@@ -31,6 +31,7 @@ public class CallsignEngine {
 		
 		callsigns = new HashMap();
 		for(int i = 0; i < callsignsList.getLength(); i++) {
+			if(callsignsList.item(i).getNodeType() != 1) continue;
 			NodeList callsignNodes = callsignsList.item(i).getChildNodes();
 			
 			// Number constructor params
@@ -40,6 +41,7 @@ public class CallsignEngine {
 			
 			// Retrieve number data 
 			for(int j = 0; j < callsignNodes.getLength(); j++) {
+				if(callsignNodes.item(j).getNodeType() != 1) continue;
 				Element callsignNode = (Element) callsignNodes.item(j);
 				String xmlTag = callsignNode.getTagName();
 				
