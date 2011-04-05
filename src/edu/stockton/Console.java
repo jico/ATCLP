@@ -12,7 +12,6 @@ import java.util.Scanner;
  * predefined commands.
  * 
  * @author Jico Baligod
- * @version 1.0b
  *
  */
 public class Console {
