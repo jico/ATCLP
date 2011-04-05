@@ -20,7 +20,7 @@ public class NumberEngine {
 	private static Document numbersDoc;
 	private static Element tree;
 	private static NodeList numbersList;
-	private static String xmlFilename = "numbersPretty.xml";
+	private static String xmlFilename = "numbers.xml";
 	private static HashMap numbers;
 	
 	/**
