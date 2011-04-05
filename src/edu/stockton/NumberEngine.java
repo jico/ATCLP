@@ -20,7 +20,7 @@ public class NumberEngine {
 	private static Document numbersDoc;
 	private static Element tree;
 	private static NodeList numbersList;
-	private static String xmlFilename = "numbers.xml";
+	private static String xmlFilename = "numbersPretty.xml";
 	private static HashMap numbers;
 	
 	/**
@@ -38,9 +38,10 @@ public class NumberEngine {
 			e.printStackTrace();
 		}
 		
-		
 		numbers = new HashMap();
 		for(int i = 0; i < numbersList.getLength(); i++) {
+			// Disregard any non-element nodes (i.e. #text nodes)
+			if(numbersList.item(i).getNodeType() != 1) continue;
 			NodeList numberNodes = numbersList.item(i).getChildNodes();
 			
 			// Number constructor params
@@ -50,6 +51,8 @@ public class NumberEngine {
 			
 			// Retrieve number data 
 			for(int j = 0; j < numberNodes.getLength(); j++) {
+				if(numberNodes.item(j).getNodeType() != 1) continue;
+				
 				Element numberNode = (Element) numberNodes.item(j);
 				String xmlTag = numberNode.getTagName();
 				
@@ -63,6 +66,7 @@ public class NumberEngine {
 			numbers.put(text, number);
 	
 		}
+		
 	}
 	
 	
