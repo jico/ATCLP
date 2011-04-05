@@ -101,7 +101,18 @@ public class NumberEngine {
 			String current = cursor.next();
 			current = current.toLowerCase();
 			
-			if(current.equalsIgnoreCase("hundred")) {
+			if(current.equalsIgnoreCase("thousand")) {
+				if(cursor.hasNext()) {
+					String next = cursor.next();
+					int nextVal = getValue(next);
+					int nextWeight = getWeight(next);
+					int nextNum = nextVal * nextWeight;
+					if(nextNum < 10 && !cursor.hasNext()) { 
+						numericString += "00" + nextNum;
+					} else if(nextNum < 20 && !cursor.hasNext()) numericString += "0" + nextNum; 
+					else cursor.previous();
+				} else numericString += "000";
+			} else if(current.equalsIgnoreCase("hundred")) {
 				if(cursor.hasNext()) {
 					String next = cursor.next();
 					int nextVal = getValue(next);
@@ -110,9 +121,7 @@ public class NumberEngine {
 					if(nextNum < 10) numericString += "0" + nextNum;
 					else if(nextNum < 20 || !cursor.hasNext()) numericString += nextNum; 
 					else cursor.previous();
-				} else {
-					numericString += "00";
-				}
+				} else numericString += "00";
 				
 			} else {
 				numericString += getValue(current);
