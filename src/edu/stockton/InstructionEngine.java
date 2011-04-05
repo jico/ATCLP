@@ -39,6 +39,7 @@ public class InstructionEngine {
 		
 		instructions = new ArrayList<Instruction>();
 		for(int i = 0; i < instructionsList.getLength(); i++) {
+			if(instructionsList.item(i).getNodeType() != 1) continue;
 			NodeList instructionNodes = instructionsList.item(i).getChildNodes();
 			
 			// instruction constructor params
@@ -48,6 +49,7 @@ public class InstructionEngine {
 			
 			// Retrieve instruction data 
 			for(int j = 0; j < instructionNodes.getLength(); j++) {
+				if(instructionNodes.item(j).getNodeType() != 1) continue;
 				Element instructionNode = (Element) instructionNodes.item(j);
 				String xmlTag = instructionNode.getTagName();
 				
@@ -61,11 +63,13 @@ public class InstructionEngine {
 					String outputRegex = "";
 										
 					for(int k = 0; k < paramNodes.getLength(); k++) {
+						if(paramNodes.item(k).getNodeType() != 1) continue;
 						Element paramNode = (Element) paramNodes.item(k);
 						
 						NodeList paramDataNodes = paramNode.getChildNodes();
 						
 						for(int l = 0; l < paramDataNodes.getLength(); l++) {
+							if(paramDataNodes.item(l).getNodeType() != 1) continue;
 							Element paramDataNode = (Element) paramDataNodes.item(l);
 							String paramTag = paramDataNode.getTagName();
 														
