@@ -18,12 +18,13 @@ Currently the Console class is used for testing purposes to call Engine methods,
 ### Using the console
 
 When you run the Console, you should see:
-	Console started. "exit" to quit.
-	>>
+	``Console started. "exit" to quit.
+	>>``
 	
 You can then invoke predefined methods on strings. 
 Method invocation syntax is: 
-	method: parameter
+	
+	``method: parameter``
 	
 The _parameter_ is typically a String.
 
