@@ -72,6 +72,35 @@
 		</params>
 	</instruction>
 	
+	<instruction>
+		<phrase>maintain [0-9]* (knots)? (or greater)?</phrase>
+		<type>speed</type>
+		<params>
+			<param>
+				<type>speed</type>
+				<input>([0-9]+) knots</input>
+				<output>$1</output>
+			</param>
+		</params>
+	</instruction>
+	
+	<instruction>
+		<phrase>(increase|reduce) speed to (mach)? (point)? [0-9]+ (knots)?</phrase>
+		<type>speed</type>
+		<params>
+			<param>
+				<type>speed</type>
+				<input>([0-9]+) knots</input>
+				<output>$1</output>
+			</param>
+			<param>
+				<type>speed</type>
+				<input>mach point ([0-9]+)</input>
+				<output>.$1M</output>
+			</param>
+		</params>
+	</instruction>
+	
 
 </instructions>
 
