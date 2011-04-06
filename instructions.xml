@@ -108,6 +108,18 @@
 		</params>
 	</instruction>
 	
+	<instruction>
+		<phrase>cleared direct [A-Za-z]+</phrase>
+		<type>clearance</type>
+		<params>
+			<param>
+				<type>fix</type>
+				<input>direct ([A-Za-z]+)</input>
+				<output>$1</output>
+			</param>
+		</params>
+	</instruction>
+	
 
 </instructions>
 

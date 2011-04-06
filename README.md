@@ -63,4 +63,5 @@ To use the main _parse_ method of the Console/LP, you must pass a valid ATC comm
 *	United sixteen hundred maintain flight level three four zero
 *	Aban eighteen o two turn left heading one hundred twenty degrees
 *	Candler nine three five five reduce speed to two fifty
+*	Cactus seventy thirty cleared direct lance
 
