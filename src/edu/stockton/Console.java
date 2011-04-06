@@ -30,7 +30,7 @@ public class Console {
 			System.out.print(">> ");
 			
 			input = console.nextLine();
-			if(input.equals("exit")) exit = true;
+			if(input.equalsIgnoreCase("exit")) exit = true;
 			else {
 				// Format of commands:
 				// i.e. "parse: nineteen forty four"
