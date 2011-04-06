@@ -37,12 +37,26 @@ public class LanguageProcessor {
 				currentTag = thisTag;
 				componentText += tokens.get(i) + " ";
 			} else {
-				if(i == tokens.size()-1) componentText += tokens.get(i) + " ";
-				Component thisComponent = new Component(componentText, currentTag);
-				components.add(thisComponent);
-				componentText = "";
-				componentText += tokens.get(i) + " ";
-				currentTag = thisTag;
+				if(i == tokens.size() - 1 && thisTag.equals(currentTag)) { 
+					componentText += tokens.get(i) + " ";
+					Component thisComponent = new Component(componentText, currentTag);
+					components.add(thisComponent);
+					componentText = "";
+					componentText += tokens.get(i) + " ";
+					currentTag = thisTag;
+				} else if(i == tokens.size() - 1) {
+					Component thisComponent = new Component(componentText, currentTag);
+					components.add(thisComponent);
+					Component lastComponent = new Component(tokens.get(i), thisTag);
+					components.add(lastComponent);
+				} else {
+					Component thisComponent = new Component(componentText, currentTag);
+					components.add(thisComponent);
+					componentText = "";
+					componentText += tokens.get(i) + " ";
+					currentTag = thisTag;
+				}
+				
 			}
 
 		}

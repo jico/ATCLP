@@ -183,5 +183,17 @@
 		<value>9</value>
 		<weight>10</weight>
 	</number>
+	
+	<number>
+		<text>hundred</text>
+		<value>1</value>
+		<weight>100</weight>
+	</number>
+	
+	<number>
+		<text>thousand</text>
+		<value>1</value>
+		<weight>1000</weight>
+	</number>
 
 </numbers>
