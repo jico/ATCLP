@@ -54,3 +54,12 @@ The currently available __methods__ are:
 *	__instruction__ Checks if the passed string is a valid instruction. Returns the index in the xml library if the passed string is valid. Returns -1 otherwise. (Essentially the _isInstruction_ method of the InstructionEngine class).
 		
 Methods are not case-sensitive.
+
+### Sample ATC commands
+
+To use the main _parse_ method of the Console/LP, you must pass a valid ATC command defined in the _instructions.xml_ library. Any passed aircraft telephonies must also exist in the _callsigns.xml_ library. Some examples are:
+
+*	Cactus four five eight two increase speed to mach point seven two
+*	United sixteen hundred maintain flight level three four zero
+*	Aban eighteen o two turn left heading one hundred twenty degrees
+
