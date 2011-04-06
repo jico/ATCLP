@@ -66,6 +66,6 @@ To use the main _parse_ method of the Console/LP, you must pass a valid ATC comm
 *	Cactus seventy thirty cleared direct lance
 
 __Note:__ Use the above valid ATC command strings as the parameter to the _parse_ Console method. i.e. 
-	parse: Cactus seventy thirty cleared direct lance
+	``parse: Cactus seventy thirty cleared direct lance``
 Which should then return a formatted XML string with the parsed parameters.
 
