@@ -6,6 +6,13 @@ import java.util.ListIterator;
 
 import javax.swing.text.html.HTMLDocument.Iterator;
 
+/**
+ * Top level processor responsible for overall ATC
+ * command parsing. Understands passed ATC command
+ * strings, utilizes Callsign, Number, and Instruction Engines
+ * to return a fully parsed ATC command.
+ *
+ */
 public class LanguageProcessor {
 	
 	/**

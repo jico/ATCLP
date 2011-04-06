@@ -12,6 +12,14 @@ import org.w3c.dom.Document;
 import org.w3c.dom.Element;
 import org.w3c.dom.NodeList;
 
+/**
+ * Recognizes valid ATC commands by checking strings against
+ * instructions XML data library.
+ * Identifies instruction parameters and returns a
+ * ParsedInstruction object containing interpreted instruction
+ * components (instruction phrase, param output, type).
+ *
+ */
 public class InstructionEngine {
 	private static DocumentBuilderFactory factory = DocumentBuilderFactory.newInstance();
 	private static DocumentBuilder loader;

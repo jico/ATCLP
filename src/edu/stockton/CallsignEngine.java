@@ -9,6 +9,12 @@ import org.w3c.dom.Document;
 import org.w3c.dom.Element;
 import org.w3c.dom.NodeList;
 
+/**
+ * Identifies aircraft telephony against the
+ * callsigns XML library and can look up and convert
+ * aircraft information.
+ *
+ */
 public class CallsignEngine {
 	private static DocumentBuilderFactory factory = DocumentBuilderFactory.newInstance();
 	private static DocumentBuilder loader;
