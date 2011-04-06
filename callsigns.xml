@@ -36,6 +36,12 @@
 		<designator>AWE</designator>
 		<company>US AIRWAYS (PHOENIX, AZ)</company>
 	</callsign>
+	
+	<callsign>
+		<telephony>UNITED</telephony>
+		<designator>UAL</designator>
+		<company>UNITED AIRLINES</company>
+	</callsign>
 
 </callsigns>
 
