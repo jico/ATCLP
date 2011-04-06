@@ -32,16 +32,46 @@
 	</instruction>
 	
 	<instruction>
-		<phrase>(maintain|cruise) (flight level) [0-9]*</phrase>
-		<type>altitude</type>
+		<phrase>turn (left|right) heading [0-9]* (degrees)?</phrase>
+		<type>vector</type>
 		<params>
 			<param>
-				<type>altitude</type>
-				<input>flight level ([0-9]+)</input>
-				<output>FL$1</output>
+				<type>heading</type>
+				<input>heading ([0-9]+)</input>
+				<output>$1</output>
 			</param>
 		</params>
 	</instruction>
+	
+	<instruction>
+		<phrase>fly heading [0-9]* (degrees)?</phrase>
+		<type>vector</type>
+		<params>
+			<param>
+				<type>heading</type>
+				<input>heading ([0-9]+)</input>
+				<output>$1</output>
+			</param>
+		</params>
+	</instruction>
+	
+	<instruction>
+		<phrase>turn [0-9]* (degrees)? (left|right)</phrase>
+		<type>vector</type>
+		<params>
+			<param>
+				<type>heading</type>
+				<input>([0-9]*) (degrees)? left</input>
+				<output>-$1</output>
+			</param>
+			<param>
+				<type>heading</type>
+				<input>([0-9]*) (degrees)? right</input>
+				<output>+$1</output>
+			</param>
+		</params>
+	</instruction>
+	
 
 </instructions>
 
