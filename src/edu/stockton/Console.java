@@ -24,36 +24,50 @@ public class Console {
 	public static void main(String[] args) throws Exception {
 		boolean exit = false;
 		
-		System.out.println("Console started. \"exit\" to quit.");
+		System.out.println("ATCLP Console started");
+		System.out.println("\"help\" for more information");
 		do {
 			params.clear();
 			System.out.print(">> ");
 			
 			input = console.nextLine();
-			if(input.equalsIgnoreCase("exit")) exit = true;
+			if(input.equalsIgnoreCase("exit") || input.equalsIgnoreCase("quit")) exit = true;
+			else if(input.equalsIgnoreCase("help")) printHelp(); 
 			else {
 				// Format of commands:
 				// i.e. "parse: nineteen forty four"
-				line = input.split(":");
+				line = input.split("'");
 				if(line.length != 2) System.out.println("Error");
 				else {
 					String cmd = line[0].trim();
 					String param = line[1].trim();
 					
+					System.out.println("cmd: " + cmd);
+					System.out.println("param: " + param);
+					
 					if(cmd.equalsIgnoreCase("parse")) System.out.println(LanguageProcessor.parse(param).toXML());
-					if(cmd.equalsIgnoreCase("tonum")) System.out.println(NumberEngine.toNumeric(param));
-					if(cmd.equalsIgnoreCase("identify")) System.out.println(CallsignEngine.telephonyToDesignator(param));
-					if(cmd.equalsIgnoreCase("params")) {
+					else if(cmd.equalsIgnoreCase("tonum")) System.out.println(NumberEngine.toNumeric(param));
+					else if(cmd.equalsIgnoreCase("identify")) System.out.println(CallsignEngine.telephonyToDesignator(param));
+					else if(cmd.equalsIgnoreCase("params")) {
 						System.out.println(InstructionEngine.parse(param).toString());
 					}
-					if(cmd.equalsIgnoreCase("instruction")) System.out.println(InstructionEngine.isInstruction(param));
-
+					else if(cmd.equalsIgnoreCase("isinst")) System.out.println(InstructionEngine.isInstruction(param));
 				}	
 				
 			}
 			
 		} while(!exit);
 		System.out.println("Console terminated. Goodbye!");	
+		
+	}
+	
+	public static void printHelp() throws Exception {
+		FileReader reader = new FileReader("help.txt");
+		Scanner in = new Scanner(reader);
+		
+		while(in.hasNext()) {
+			System.out.println(in.nextLine());
+		}
 		
 	}
 	

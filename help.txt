@@ -1,0 +1,14 @@
+usage: [COMMAND] '[ARG]'
+
+Commands:
+	parse		Parses a full ATC Command string and returns the recipient, 
+			type, and parameter in an XML formatted string
+	toNum		Converts a textual represented number (i.e. "nineteen") to its
+			corresponding numeric format (i.e. "19")
+	identify	Finds the 3 letter designator of the passed airline telephony
+			i.e. "Cactus" => "AWE"
+	params		Pulls the instruction parameter from an ATC Command string
+	isInst		Checks to see if the passed instruction string exists in 
+			the ATC instruction grammar library
+	exit		Terminates the console
+	quit		Alias for 'exit'
