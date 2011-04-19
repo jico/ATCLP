@@ -43,36 +43,47 @@ public class Console {
 				line = input.split("'");
 				if(line.length != 2) System.out.println("Command syntax error. Syntax: [command] '[param]'");
 				else {
-					// Pull command, options, and argument
+					// Pull command, optionsList, and argument
 					String cmdLine = line[0].trim();
-					String[] cmdList = cmdLine.split("-");
-					String method = cmdList[0].trim();
+					String[] optionsList = cmdLine.split("-");
+					String method = optionsList[0].trim();
 					String param = line[1].trim();
 					
-					// Options variables
-					boolean debug = false;
 					
-					if(cmdList.length > 1) {
-						for(int i = 1; i < cmdList.length; i++) {
-							if(cmdList[i].equals("d")) debug = true;
+					// Options variables
+					String options = "";
+					boolean verbose = false;
+					
+					// Check options and set option variable
+					if(optionsList.length > 1) {
+						for(int i = 1; i < optionsList.length; i++) options += optionsList[i].trim();	
+						
+						if(options.indexOf("v") >= 0) {
+							verbose = true;
+							LanguageProcessor.setVerbose(true);
 						}
 					}
 					
-					if(debug) {
+					if(verbose) {
 						System.out.println("cmd: " + method);
 						System.out.println("param: " + param);
-						System.out.print("result: ");
+						System.out.println("options: " + options);
 					}
 					
 					// Execute method
-					if(method.equalsIgnoreCase("parse")) System.out.println(LanguageProcessor.parse(param).toXML());
-					else if(method.equalsIgnoreCase("tonum")) System.out.println(NumberEngine.toNumeric(param));
-					else if(method.equalsIgnoreCase("identify")) System.out.println(CallsignEngine.telephonyToDesignator(param));
-					else if(method.equalsIgnoreCase("params")) {
-						System.out.println(InstructionEngine.parse(param).toString());
+					try {
+						if(method.equalsIgnoreCase("parse")) System.out.println(LanguageProcessor.parse(param).toXML());
+						else if(method.equalsIgnoreCase("tonum")) System.out.println(NumberEngine.toNumeric(param));
+						else if(method.equalsIgnoreCase("identify")) System.out.println(CallsignEngine.telephonyToDesignator(param));
+						else if(method.equalsIgnoreCase("params")) {
+							System.out.println(InstructionEngine.parse(param).toString());
+						}
+						else if(method.equalsIgnoreCase("isinst")) System.out.println(InstructionEngine.isInstruction(param));
+						else System.out.println("Unrecognized command '" + method + "' type help for command list");
+					} catch(Exception e) {
+						e.printStackTrace();
 					}
-					else if(method.equalsIgnoreCase("isinst")) System.out.println(InstructionEngine.isInstruction(param));
-					else System.out.println("Unrecognized command '" + method + "' type help for command list");
+					
 				}	
 				
 			}
