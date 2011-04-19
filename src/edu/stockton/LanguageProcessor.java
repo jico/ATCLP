@@ -14,6 +14,7 @@ import javax.swing.text.html.HTMLDocument.Iterator;
  *
  */
 public class LanguageProcessor {
+	private static boolean verbose = false;
 	
 	/**
 	 * Interprets a complete ATC command string.
@@ -29,7 +30,6 @@ public class LanguageProcessor {
 		for(String word : words) {
 			tokens.add(word);
 		}
-		
 		
 		// Tag each token and group
 		String currentTag = "";
@@ -68,6 +68,13 @@ public class LanguageProcessor {
 
 		}
 		
+		if(verbose) {
+			System.out.println("Command components:");
+			for(Component c : components) {
+				System.out.println("[" + c.getType() + "] " + c.getText());
+			}
+		}
+		
 		String recipient = "";
 		
 		// Do conversions for each token
@@ -75,20 +82,28 @@ public class LanguageProcessor {
 			Component current = components.get(i);
 			String type = current.getType();
 			
-			
-			if(type.equals("number")) {				
+			if(type.equals("number")) {	
+				if(verbose) System.out.print("'" + current.getText() + "' => ");
+				
 				current.setText(NumberEngine.toNumeric(current.getText()));
 				components.set(i, current);
+				
+				if(verbose) System.out.println("'" + current.getText() + "'");
 				
 				// Recognize recipient and build recipient string
 				if(recipient == "" && components.get(i-1).getType() == "callsign") {
 					recipient = components.get(i-1).getText() + components.get(i).getText();
+					
+					if(verbose) System.out.println("Recipient identified: " + recipient);
 				}
 				
-			}
-			if(type.equals("callsign")) {
+			} else if(type.equals("callsign")) {
+				if(verbose) System.out.print("'" + current.getText() + "' => ");
+				
 				current.setText(CallsignEngine.telephonyToDesignator(current.getText()));
 				components.set(i, current);
+				
+				if(verbose) System.out.println("'" + current.getText() + "'");
 			}
 		}
 		
@@ -96,9 +111,24 @@ public class LanguageProcessor {
 		for(Component component : components) {
 			phrase += component.getText() + " ";
 		}
+		
+		if(verbose) System.out.println("Looking for valid instructions...");
+		
 		ParsedInstruction instruction = InstructionEngine.parse(phrase);
 		
+		if(verbose) {
+			System.out.println("Instruction found");
+			System.out.println("phrase: " + instruction.getPhrase());
+			System.out.println("instr match: " + instruction.getInstRegex());
+			System.out.println("type: " + instruction.getType());
+			System.out.println("param match: " + instruction.getParamRegex());
+			System.out.println("param: " + instruction.getParam());
+		}
+		
 		ATCCommand parsed = new ATCCommand(recipient, instruction.getType(), instruction.getParam());
+		
+		if(verbose) System.out.println("Complete");
+		
 		return parsed;
 
 	}
@@ -114,6 +144,10 @@ public class LanguageProcessor {
 		if(NumberEngine.isNumber(token)) tag = "number";
 		if(CallsignEngine.isCallsign(token)) tag = "callsign";
 		return tag;
+	}
+	
+	public static void setVerbose(boolean s) {
+		verbose = s;
 	}
 	
 }
