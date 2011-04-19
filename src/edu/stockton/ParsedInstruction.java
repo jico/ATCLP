@@ -8,8 +8,10 @@ package edu.stockton;
  */
 public class ParsedInstruction {
 	private String phrase;
+	private String instRegex;
 	private String param;
 	private String type;
+	private String paramRegex;
 	
 	/**
 	 * Constructs a ParsedInstruction
@@ -17,10 +19,12 @@ public class ParsedInstruction {
 	 * @param param The formatted output parameter
 	 * @param type The instruction type
 	 */
-	public ParsedInstruction(String phrase, String param, String type) {
+	public ParsedInstruction(String phrase, String param, String type, String paramRegex, String instRegex) {
 		this.phrase = phrase;
 		this.param = param;
 		this.type = type;
+		this.paramRegex = paramRegex;
+		this.instRegex = instRegex;
 	}
 	
 	/**
@@ -45,6 +49,14 @@ public class ParsedInstruction {
 	 */
 	public String getType() {
 		return type;
+	}
+	
+	public String getParamRegex() {
+		return paramRegex;
+	}
+	
+	public String getInstRegex() {
+		return instRegex;
 	}
 	
 	/**

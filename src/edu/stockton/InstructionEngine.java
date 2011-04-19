@@ -110,9 +110,11 @@ public class InstructionEngine {
 		if(instructions == null) init();
 		
 		int index = isInstruction(phrase);
+		String instRegex = instructions.get(index).getPhrase();
 		String type = instructions.get(index).getType();
 		Param param = null;
 		String paramIn = "";
+		String mParamRegex = "";
 		
 		for(Param p : instructions.get(index).getParams()) {
 			String paramRegex = p.getInputRegex();
@@ -122,13 +124,14 @@ public class InstructionEngine {
 			if(paramMatcher.find()) {
 				param = p;
 				paramIn = paramMatcher.group();
+				mParamRegex = paramRegex;
 				break;
 			}
 		}
 		
 		String paramOutput = paramIn.replaceAll(param.getInputRegex(), param.getOutputRegex());
 		
-		ParsedInstruction parsedInstr = new ParsedInstruction(phrase, paramOutput, type);
+		ParsedInstruction parsedInstr = new ParsedInstruction(phrase, paramOutput, type, mParamRegex, instRegex);
 		return parsedInstr;
 	}
 	
