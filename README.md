@@ -26,9 +26,10 @@ When you run the Console, you should see:
 You can then invoke predefined methods on strings. 
 Method invocation syntax is: 
 	
-    [method] '[parameter]'
+    [method] [options] '[parameter]'
 	
 The _parameter_ is typically a String.
+_options_ are passed like typical command line option flags.
 
 The currently available __methods__ are:
 
@@ -58,6 +59,13 @@ The currently available __methods__ are:
 		
 Methods are not case-sensitive.
 
+Options:
+
+Option syntax example:
+	parse -v 'Cactus fourteen hundred descend and maintain flight level three three zero'
+
+*	__v__ (verbose) Makes the LanguageProcessor output its current activities to the screen. Useful for debugging!
+
 ### Sample ATC commands
 
 To use the main _parse_ method of the Console/LP, you must pass a valid ATC command defined in the _instructions.xml_ library. Any passed aircraft telephonies must also exist in the _callsigns.xml_ library. Some examples are:
@@ -69,6 +77,6 @@ To use the main _parse_ method of the Console/LP, you must pass a valid ATC comm
 *	Cactus seventy thirty cleared direct lance
 
 __Note:__ Use the above valid ATC command strings as the parameter to the _parse_ Console method. i.e. 
-	``parse 'Cactus seventy thirty cleared direct lance'``
+	parse 'Cactus seventy thirty cleared direct lance'
 Which should then return a formatted XML string with the parsed parameters.
 
