@@ -59,12 +59,20 @@ The currently available __methods__ are:
 		
 Methods are not case-sensitive.
 
+
 Options:
 
-Option syntax example:
-	parse -v 'Cactus fourteen hundred descend and maintain flight level three three zero'
+_All options are currently implemented for the_ `parse` _method only!_
+
+Options syntax:
+Option flags are preceded by a hyphen (-), and must come before the parameter. You can precede each option individually with a hyphen, or pass a hyphen followed by multiple option flags:
+	parse -f -s 'transcipt.txt'
+	parse -fs 'transcript.txt'
+	
 
 *	__v__ (verbose) Makes the LanguageProcessor output its current activities to the screen. Useful for debugging!
+*	__f__ (file input) Parses a file rather than a passed string. Filename must still be wrapped in single quotes.
+*	__s__ (silent) Passed with `-f` (file input) option. Suppresses any parse errors and outputs only the lines that have been successfully parsed.
 
 ### Sample ATC commands
 
