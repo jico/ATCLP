@@ -12,3 +12,10 @@ Commands:
 			the ATC instruction grammar library
 	exit		Terminates the console
 	quit		Alias for 'exit'
+	
+Options:
+	All options are used with the parse command.
+	
+	-v (verbose)		Outputs LP activities. Useful for debugging
+	-f (file input)		Parses each line of a file as input
+	-s (silent)		Used with -f (file input). Suppresses parse errors.
