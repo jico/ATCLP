@@ -1,4 +1,4 @@
-usage: [COMMAND] '[ARG]'
+usage: [COMMAND] [OPTIONS] '[ARG]'
 
 Commands:
 	parse		Parses a full ATC Command string and returns the recipient, 
