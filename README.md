@@ -60,7 +60,7 @@ The currently available __methods__ are:
 Methods are not case-sensitive.
 
 
-Options:
+__Options__:
 
 _All options are currently implemented for the_ `parse` _method only!_
 
@@ -70,9 +70,9 @@ Option flags are preceded by a hyphen (-), and must come before the parameter. Y
 	parse -fs 'transcript.txt'
 	
 
-*	__v__ (verbose) Makes the LanguageProcessor output its current activities to the screen. Useful for debugging!
-*	__f__ (file input) Parses a file rather than a passed string. Filename must still be wrapped in single quotes.
-*	__s__ (silent) Passed with `-f` (file input) option. Suppresses any parse errors and outputs only the lines that have been successfully parsed.
+*	__-v__ (verbose) Makes the LanguageProcessor output its current activities to the screen. Useful for debugging!
+*	__-f__ (file input) Parses a file rather than a passed string. Filename must still be wrapped in single quotes.
+*	__-s__ (silent) Passed with `-f` (file input) option. Suppresses any parse errors and outputs only the lines that have been successfully parsed.
 
 ### Sample ATC commands
 
