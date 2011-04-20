@@ -5,7 +5,6 @@ The Federal Aviation Administration (FAA) Human Factors Team-Atlantic City (HFTA
 
 Realistic traffic flows and voice communications are used in the ATC simulations.  Air Traffic Controllers act as the simulation participants while pilots operate the simulated aircraft in response to ATC instructions.  The goal of this project is to create a software engine capable of interpreting transcribed ATC voice instructions, determining the type and parameters of the instruction, as well as the intended recipient.  For example, the instruction “United thirteen zero seven, climb and maintain flight level three three zero” represents an altitude clearance to FL330 (33,000 feet) for the aircraft having the call sign of UAL1307 (United Airlines flight 1307).
 
----
 
 ## Javadoc
 
@@ -71,7 +70,7 @@ Option flags are preceded by a hyphen (-), and must come before the parameter. Y
 	
 
 *	__-v__ (verbose) Makes the LanguageProcessor output its current activities to the screen. Useful for debugging!
-*	__-f__ (file input) Parses a file rather than a passed string. Filename must still be wrapped in single quotes.
+*	__-f__ (file input) Parses a file rather than a passed string. Filename must still be wrapped in single quotes. A sample transcript _transcript.txt_ is included for testing. __Note:__ Libraries and system is not fully implemented, so most of the transcript will not be parsed correctly.
 *	__-s__ (silent) Passed with `-f` (file input) option. Suppresses any parse errors and outputs only the lines that have been successfully parsed.
 
 ### Sample ATC commands
