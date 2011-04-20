@@ -6,9 +6,6 @@ import java.util.LinkedList;
 import java.util.ListIterator;
 import java.util.Scanner;
 
-import javax.swing.JComponent;
-import javax.swing.KeyStroke;
-
 /**
  * Console interacts with the Language Processor, as well as
  * the NumberEngine, CallsignEngine, and InstructionEngine using
@@ -23,6 +20,10 @@ public class Console {
 	private static String[] line;
 	private static LinkedList params = new LinkedList();
 	private static ListIterator itr;	
+	
+	private static boolean verbose = false;
+	private static boolean fileInput = false;
+	private static boolean silent = false;
 
 	public static void main(String[] args) throws Exception {
 		boolean exit = false;
@@ -49,19 +50,21 @@ public class Console {
 					String method = optionsList[0].trim();
 					String param = line[1].trim();
 					
-					
-					// Options variables
 					String options = "";
-					boolean verbose = false;
 					
 					// Check options and set option variable
 					if(optionsList.length > 1) {
+						// Get all option flags
 						for(int i = 1; i < optionsList.length; i++) options += optionsList[i].trim();	
 						
+						// Set flags
 						if(options.indexOf("v") >= 0) {
 							verbose = true;
 							LanguageProcessor.setVerbose(true);
 						}
+						if(options.indexOf("f") >= 0) fileInput = true;
+						if(options.indexOf("s") >= 0) silent = true;
+						
 					}
 					
 					if(verbose) {
@@ -72,7 +75,11 @@ public class Console {
 					
 					// Execute method
 					try {
-						if(method.equalsIgnoreCase("parse")) System.out.println(LanguageProcessor.parse(param).toXML());
+						if(method.equalsIgnoreCase("parse")) {
+							if(fileInput) {
+								parseFile(param);
+							} else System.out.println(LanguageProcessor.parse(param).toXML());
+						}
 						else if(method.equalsIgnoreCase("tonum")) System.out.println(NumberEngine.toNumeric(param));
 						else if(method.equalsIgnoreCase("identify")) System.out.println(CallsignEngine.telephonyToDesignator(param));
 						else if(method.equalsIgnoreCase("params")) {
@@ -81,7 +88,7 @@ public class Console {
 						else if(method.equalsIgnoreCase("isinst")) System.out.println(InstructionEngine.isInstruction(param));
 						else System.out.println("Unrecognized command '" + method + "' type help for command list");
 					} catch(Exception e) {
-						e.printStackTrace();
+						System.out.println(e.getMessage());
 					}
 					
 				}	
@@ -101,6 +108,29 @@ public class Console {
 			System.out.println(in.nextLine());
 		}
 		
+	}
+	
+	
+	public static void parseFile(String filename) throws FileNotFoundException {
+		FileReader reader = new FileReader(filename);
+		Scanner in = new Scanner(reader);
+		
+		while (in.hasNextLine()) {
+			
+			String cmd = in.nextLine();
+			if(!silent) System.out.println(cmd);
+			
+			try {
+				String output = LanguageProcessor.parse(cmd).toXML();
+				if(silent) System.out.println(cmd);
+				System.out.println(output + "\n");
+			} catch(Exception e) {
+				if(!silent) System.out.println("parse error\n");
+			}
+			
+		}
+		
+		in.close();
 	}
 	
 	
