@@ -97,8 +97,10 @@ public class LanguageProcessor {
 					if(verbose) System.out.println("Recipient identified: " + recipient);
 				}
 				
-			} else if(type.equals("callsign")) {
+			} else if(type.equals("callsign") || type.equals("unidentified") && CallsignEngine.isCallsign(current.getText())) {
 				if(verbose) System.out.print("'" + current.getText() + "' => ");
+				
+				if(type.equals("unidentified")) current.setType("callsign");
 				
 				current.setText(CallsignEngine.telephonyToDesignator(current.getText()));
 				components.set(i, current);

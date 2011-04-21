@@ -10,8 +10,6 @@ import java.util.Scanner;
  * Console interacts with the Language Processor, as well as
  * the NumberEngine, CallsignEngine, and InstructionEngine using
  * predefined commands.
- * 
- * @author Jico Baligod
  *
  */
 public class Console {
@@ -42,7 +40,7 @@ public class Console {
 				// Format of commands:
 				// i.e. "parse: nineteen forty four"
 				line = input.split("'");
-				if(line.length != 2) System.out.println("Command syntax error. Syntax: [command] '[param]'");
+				if(line.length != 2) System.out.println("Command syntax error. Syntax: [command] [options] '[param]'");
 				else {
 					// Pull command, optionsList, and argument
 					String cmdLine = line[0].trim();
