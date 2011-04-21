@@ -26,9 +26,6 @@ public class Console {
 		System.out.println("\"help\" for more information");
 				
 		do {
-			boolean verbose = false;
-			boolean fileInput = false;
-			boolean silent = false;
 			 
 			params.clear();
 			System.out.print(">> ");
@@ -49,6 +46,9 @@ public class Console {
 					String param = line[1].trim();
 					
 					String options = "";
+					boolean verbose = false;
+					boolean fileInput = false;
+					boolean silent = false;
 					
 					// Check options and set option variable
 					if(optionsList.length > 1) {
@@ -58,7 +58,7 @@ public class Console {
 						// Set flags
 						if(options.indexOf("v") >= 0) {
 							verbose = true;
-							LanguageProcessor.setVerbose(true);
+							
 						}
 						if(options.indexOf("f") >= 0) fileInput = true;
 						if(options.indexOf("s") >= 0) silent = true;
@@ -76,7 +76,7 @@ public class Console {
 						if(method.equalsIgnoreCase("parse")) {
 							if(fileInput) {
 								parseFile(param, silent);
-							} else System.out.println(LanguageProcessor.parse(param).toXML());
+							} else System.out.println(LanguageProcessor.parse(param, verbose).toXML());
 						}
 						else if(method.equalsIgnoreCase("tonum")) System.out.println(NumberEngine.toNumeric(param));
 						else if(method.equalsIgnoreCase("identify")) System.out.println(CallsignEngine.telephonyToDesignator(param));
@@ -119,7 +119,7 @@ public class Console {
 			if(!silent) System.out.println(cmd);
 			
 			try {
-				String output = LanguageProcessor.parse(cmd).toXML();
+				String output = LanguageProcessor.parse(cmd, false).toXML();
 				if(silent) System.out.println(cmd);
 				System.out.println(output + "\n");
 			} catch(Exception e) {
