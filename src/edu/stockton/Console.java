@@ -81,40 +81,21 @@ public class Console {
 									parseFile(param, silent);
 								} catch(FileNotFoundException e) {
 									System.out.println("No such file: " + param);
-								} catch(ParseException e) {
-									System.out.println(e.getMessage());
 								}
 								
-							} else {
-								try {
-									System.out.println(LanguageProcessor.parse(param, verbose).toXML());
-								} catch(ParseException e) {
-									System.out.println(e.getMessage());
-								}
-							}
+							} else System.out.println(LanguageProcessor.parse(param, verbose).toXML());
 						}
 						
 						// other useful methods
 						else if(method.equalsIgnoreCase("tonum")) {
-							try {
-								System.out.println(NumberEngine.toNumeric(param));
-							} catch(ParseException e) {
-								System.out.println(e.getMessage());
-							}
+							System.out.println(NumberEngine.toNumeric(param));
+
 						}
 						else if(method.equalsIgnoreCase("identify")) {
-							try {
-								System.out.println(CallsignEngine.telephonyToDesignator(param));
-							} catch(ParseException e) {
-								System.out.println(e.getMessage());
-							}
+							System.out.println(CallsignEngine.telephonyToDesignator(param));
 						}
 						else if(method.equalsIgnoreCase("params")) {
-							try {
-								System.out.println(InstructionEngine.parse(param).toString());
-							} catch(ParseException e) {
-								System.out.println(e.getMessage());
-							}
+							System.out.println(InstructionEngine.parse(param).toString());
 						}
 						else if(method.equalsIgnoreCase("isinstr")) {
 							int index = InstructionEngine.isInstruction(param);
@@ -122,9 +103,9 @@ public class Console {
 							else System.out.println("Unrecognized instruction");
 						}
 						else System.out.println("Unrecognized command '" + method + "' type help for command list");
-					} catch(Exception e) {
-						System.out.println("Unknown error: " + e.getMessage());
-					}
+					} catch(ParseException e) {
+						System.out.println(e.getMessage());
+					} 
 					
 				}	
 				
