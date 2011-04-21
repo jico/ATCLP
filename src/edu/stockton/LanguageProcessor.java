@@ -36,6 +36,9 @@ public class LanguageProcessor {
 		String componentText = "";
 		for(int i = 0; i < tokens.size(); i++) {
 			
+			// Disregard any common filler words
+			if(tokens.get(i).equalsIgnoreCase("um") || tokens.get(i).equalsIgnoreCase("uh") ) continue;
+			
 			String thisTag = tag(tokens.get(i));
 			
 			if(thisTag.equals(currentTag) && i < tokens.size()-1) {
