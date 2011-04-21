@@ -110,11 +110,13 @@ public class InstructionEngine {
 		if(instructions == null) init();
 		
 		int index = isInstruction(phrase);
+		if(index < 0) System.out.println("No recognized instructions");
+		
 		String instRegex = instructions.get(index).getPhrase();
 		String type = instructions.get(index).getType();
 		Param param = null;
-		String paramIn = "";
-		String mParamRegex = "";
+		String paramIn = null;
+		String mParamRegex = null;
 		
 		for(Param p : instructions.get(index).getParams()) {
 			String paramRegex = p.getInputRegex();

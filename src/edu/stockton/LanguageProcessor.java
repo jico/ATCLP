@@ -116,7 +116,10 @@ public class LanguageProcessor {
 		
 		if(verbose) System.out.println("Looking for valid instructions...");
 		
+
 		ParsedInstruction instruction = InstructionEngine.parse(phrase);
+		
+		if(instruction == null) System.out.println("No instruction");
 		
 		if(verbose) {
 			System.out.println("Instruction found");
@@ -132,6 +135,9 @@ public class LanguageProcessor {
 		if(verbose) System.out.println("Complete");
 		
 		return parsed;
+
+		
+		
 
 	}
 	
