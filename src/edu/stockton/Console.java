@@ -146,7 +146,7 @@ public class Console {
 	 * @param silent if set to true, will suppress any unparsed lines
 	 * @throws FileNotFoundException
 	 */
-	public static void parseFile(String filename, boolean silent) throws FileNotFoundException, ParseException {
+	public static void parseFile(String filename, boolean silent) throws FileNotFoundException {
 		FileReader reader = new FileReader(filename);
 		Scanner in = new Scanner(reader);
 		
