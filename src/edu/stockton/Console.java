@@ -105,8 +105,8 @@ public class Console {
 						else if(method.equalsIgnoreCase("identify")) {
 							try {
 								System.out.println(CallsignEngine.telephonyToDesignator(param));
-							} catch(Exception e) {
-								System.out.println("Unidentified callsign");
+							} catch(ParseException e) {
+								System.out.println(e.getMessage());
 							}
 						}
 						else if(method.equalsIgnoreCase("params")) {

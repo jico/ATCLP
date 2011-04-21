@@ -69,12 +69,14 @@ public class CallsignEngine {
 	
 	public static String telephonyToDesignator(String telephony) {
 		if(callsigns == null) init();
+		if(!isCallsign(telephony)) throw new ParseException("Not a recognized telephony");
 		Callsign callsign = (Callsign) callsigns.get(telephony.toLowerCase());
 		return callsign.getDesignator().toUpperCase();
 	}
 	
 	public static String telephonyToCompany(String telephony) {
 		if(callsigns == null) init();
+		if(!isCallsign(telephony)) throw new ParseException("Not a recognized telephony");
 		Callsign callsign = (Callsign) callsigns.get(telephony.toLowerCase());
 		return callsign.getCompany();
 	}
