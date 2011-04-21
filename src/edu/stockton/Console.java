@@ -73,20 +73,43 @@ public class Console {
 					
 					// Execute method
 					try {
+						// main parse method
 						if(method.equalsIgnoreCase("parse")) {
 							if(fileInput) {
 								parseFile(param, silent);
 							} else System.out.println(LanguageProcessor.parse(param, verbose).toXML());
 						}
-						else if(method.equalsIgnoreCase("tonum")) System.out.println(NumberEngine.toNumeric(param));
-						else if(method.equalsIgnoreCase("identify")) System.out.println(CallsignEngine.telephonyToDesignator(param));
-						else if(method.equalsIgnoreCase("params")) {
-							System.out.println(InstructionEngine.parse(param).toString());
+						
+						// other useful methods
+						else if(method.equalsIgnoreCase("tonum")) {
+							try {
+								System.out.println(NumberEngine.toNumeric(param));
+							} catch(Exception e) {
+								System.out.println("Invalid number");
+							}
 						}
-						else if(method.equalsIgnoreCase("isinst")) System.out.println(InstructionEngine.isInstruction(param));
+						else if(method.equalsIgnoreCase("identify")) {
+							try {
+								System.out.println(CallsignEngine.telephonyToDesignator(param));
+							} catch(Exception e) {
+								System.out.println("Unidentified callsign");
+							}
+						}
+						else if(method.equalsIgnoreCase("params")) {
+							try {
+								System.out.println(InstructionEngine.parse(param).toString());
+							} catch(Exception e) {
+								System.out.println("Unable to pull parameters");
+							}
+						}
+						else if(method.equalsIgnoreCase("isinstr")) {
+							int index = InstructionEngine.isInstruction(param);
+							if(index >= 0) System.out.println("Valid instruction: index[" + index + "]");
+							else System.out.println("Unrecognized instruction");
+						}
 						else System.out.println("Unrecognized command '" + method + "' type help for command list");
 					} catch(Exception e) {
-						System.out.println(e.getMessage());
+						System.out.println("Unknown error: " + e.getStackTrace());
 					}
 					
 				}	
