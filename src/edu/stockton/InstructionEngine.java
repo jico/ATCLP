@@ -12,6 +12,7 @@ import org.w3c.dom.Document;
 import org.w3c.dom.Element;
 import org.w3c.dom.NodeList;
 
+
 /**
  * Recognizes valid ATC commands by checking strings against
  * instructions XML data library.
@@ -110,7 +111,7 @@ public class InstructionEngine {
 		if(instructions == null) init();
 		
 		int index = isInstruction(phrase);
-		if(index < 0) throw new RuntimeException("Unrecognized instruction");
+		if(index < 0) throw new ParseException("Unrecognized instruction");
 		
 		String instRegex = instructions.get(index).getPhrase();
 		String type = instructions.get(index).getType();
@@ -130,6 +131,8 @@ public class InstructionEngine {
 				break;
 			}
 		}
+		
+		if(param == null) throw new ParseException("No valid parameters");
 		
 		String paramOutput = paramIn.replaceAll(param.getInputRegex(), param.getOutputRegex());
 		
@@ -158,6 +161,7 @@ public class InstructionEngine {
 			
 			if(matcher.find()) return i;
 		}
+		
 		return -1;
 	}
 	

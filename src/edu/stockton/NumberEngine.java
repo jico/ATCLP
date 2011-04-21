@@ -124,6 +124,7 @@ public class NumberEngine {
 				} else numericString += "00";
 				
 			} else {
+				if(!isNumber(current)) throw new ParseException("Not a recognized number");
 				numericString += getValue(current);
 				int currentWeight = getWeight(current);
 				if(currentWeight != 1) {

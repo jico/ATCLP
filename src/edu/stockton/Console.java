@@ -26,7 +26,7 @@ public class Console {
 		System.out.println("\"help\" for more information");
 				
 		do {
-			 
+			
 			params.clear();
 			
 			System.out.print(">> ");
@@ -81,12 +81,14 @@ public class Console {
 									parseFile(param, silent);
 								} catch(FileNotFoundException e) {
 									System.out.println("No such file: " + param);
+								} catch(ParseException e) {
+									System.out.println(e.getMessage());
 								}
 								
 							} else {
 								try {
 									System.out.println(LanguageProcessor.parse(param, verbose).toXML());
-								} catch(Exception e) {
+								} catch(ParseException e) {
 									System.out.println(e.getMessage());
 								}
 							}
@@ -96,8 +98,8 @@ public class Console {
 						else if(method.equalsIgnoreCase("tonum")) {
 							try {
 								System.out.println(NumberEngine.toNumeric(param));
-							} catch(Exception e) {
-								System.out.println("Invalid number");
+							} catch(ParseException e) {
+								System.out.println(e.getMessage());
 							}
 						}
 						else if(method.equalsIgnoreCase("identify")) {
@@ -110,8 +112,8 @@ public class Console {
 						else if(method.equalsIgnoreCase("params")) {
 							try {
 								System.out.println(InstructionEngine.parse(param).toString());
-							} catch(Exception e) {
-								System.out.println("Unable to pull parameters");
+							} catch(ParseException e) {
+								System.out.println(e.getMessage());
 							}
 						}
 						else if(method.equalsIgnoreCase("isinstr")) {
@@ -163,7 +165,7 @@ public class Console {
 	 * @param silent if set to true, will suppress any unparsed lines
 	 * @throws FileNotFoundException
 	 */
-	public static void parseFile(String filename, boolean silent) throws FileNotFoundException {
+	public static void parseFile(String filename, boolean silent) throws FileNotFoundException, ParseException {
 		FileReader reader = new FileReader(filename);
 		Scanner in = new Scanner(reader);
 		
@@ -176,6 +178,8 @@ public class Console {
 				String output = LanguageProcessor.parse(cmd, false).toXML();
 				if(silent) System.out.println(cmd);
 				System.out.println(output + "\n");
+			} catch(ParseException e) {
+				if(!silent) System.out.println(e.getMessage() + "\n");
 			} catch(Exception e) {
 				if(!silent) System.out.println("parse error\n");
 			}

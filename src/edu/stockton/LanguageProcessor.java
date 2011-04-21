@@ -21,7 +21,7 @@ public class LanguageProcessor {
 	 * @param command The ATC command sentence
 	 * @return An ATCCommand object containing the parsed elements
 	 */
-	public static ATCCommand parse(String command, boolean verbose) {
+	public static ATCCommand parse(String command, boolean verbose) throws ParseException {
 		
 		ArrayList<String> tokens = new ArrayList<String>();
 		ArrayList<Component> components = new ArrayList<Component>();
@@ -112,7 +112,7 @@ public class LanguageProcessor {
 			}
 		}
 		
-		if(recipient == "") throw new RuntimeException("No recognized recipient");
+		if(recipient == "") throw new ParseException("No recognized recipient");
 		
 		String phrase = "";
 		for(Component component : components) {
