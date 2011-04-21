@@ -47,24 +47,20 @@ public class Console {
 					String param = line[1].trim();
 					
 					String options = "";
-					boolean verbose = false;
-					boolean fileInput = false;
-					boolean silent = false;
 					
 					// Check options and set option variable
-					if(optionsList.length > 1) {
+
 						// Get all option flags
 						for(int i = 1; i < optionsList.length; i++) options += optionsList[i].trim();	
 						
 						// Set flags
-						if(options.indexOf("v") >= 0) {
-							verbose = true;
-							
-						}
-						if(options.indexOf("f") >= 0) fileInput = true;
-						if(options.indexOf("s") >= 0) silent = true;
+						boolean verbose = options.indexOf("v") >= 0 ? true : false;
+						boolean fileInput = options.indexOf("f") >= 0 ? true : false;
+						boolean silent = options.indexOf("s") >= 0 ? true : false;
 						
-					}
+						// Set options according to flags
+						LanguageProcessor.setVerbose(verbose);
+				
 					
 					if(verbose) {
 						System.out.println("cmd: " + method);
@@ -83,7 +79,7 @@ public class Console {
 									System.out.println("No such file: " + param);
 								}
 								
-							} else System.out.println(LanguageProcessor.parse(param, verbose).toXML());
+							} else System.out.println(LanguageProcessor.parse(param).toXML());
 						}
 						
 						// other useful methods
@@ -160,7 +156,7 @@ public class Console {
 			if(!silent) System.out.println(cmd);
 			
 			try {
-				String output = LanguageProcessor.parse(cmd, false).toXML();
+				String output = LanguageProcessor.parse(cmd).toXML();
 				if(silent) System.out.println(cmd);
 				System.out.println(output + "\n");
 				successful++;

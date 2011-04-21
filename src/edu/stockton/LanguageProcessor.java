@@ -14,6 +14,7 @@ import javax.swing.text.html.HTMLDocument.Iterator;
  *
  */
 public class LanguageProcessor {
+	private static boolean verbose = false;
 	
 	/**
 	 * Interprets a complete ATC command string.
@@ -21,7 +22,7 @@ public class LanguageProcessor {
 	 * @param command The ATC command sentence
 	 * @return An ATCCommand object containing the parsed elements
 	 */
-	public static ATCCommand parse(String command, boolean verbose) throws ParseException {
+	public static ATCCommand parse(String command) throws ParseException {
 		
 		ArrayList<String> tokens = new ArrayList<String>();
 		ArrayList<Component> components = new ArrayList<Component>();
@@ -154,6 +155,10 @@ public class LanguageProcessor {
 		if(NumberEngine.isNumber(token)) tag = "number";
 		if(CallsignEngine.isCallsign(token)) tag = "callsign";
 		return tag;
+	}
+	
+	public static void setVerbose(boolean s) {
+		verbose = s;
 	}
 	
 	
