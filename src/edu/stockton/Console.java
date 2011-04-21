@@ -17,7 +17,11 @@ public class Console {
 	private static String input;
 	private static String[] line;
 	private static LinkedList params = new LinkedList();
-	private static ListIterator itr;	
+	private static ListIterator itr;
+	
+	private static boolean verbose;
+	private static boolean fileInput;
+	private static boolean silent;
 
 	public static void main(String[] args) {
 		boolean exit = false;
@@ -50,17 +54,14 @@ public class Console {
 					
 					// Check options and set option variable
 
-						// Get all option flags
+						// Get option flags and set local option vars
 						for(int i = 1; i < optionsList.length; i++) options += optionsList[i].trim();	
+						verbose = options.indexOf("v") >= 0 ? true : false;
+						fileInput = options.indexOf("f") >= 0 ? true : false;
+						silent = options.indexOf("s") >= 0 ? true : false;
 						
-						// Set flags
-						boolean verbose = options.indexOf("v") >= 0 ? true : false;
-						boolean fileInput = options.indexOf("f") >= 0 ? true : false;
-						boolean silent = options.indexOf("s") >= 0 ? true : false;
-						
-						// Set options according to flags
+						// Set Engine options
 						LanguageProcessor.setVerbose(verbose);
-				
 					
 					if(verbose) {
 						System.out.println("cmd: " + method);
@@ -78,30 +79,23 @@ public class Console {
 								} catch(FileNotFoundException e) {
 									System.out.println("No such file: " + param);
 								}
-								
 							} else System.out.println(LanguageProcessor.parse(param).toXML());
 						}
 						
 						// other useful methods
-						else if(method.equalsIgnoreCase("tonum")) {
-							System.out.println(NumberEngine.toNumeric(param));
-
-						}
-						else if(method.equalsIgnoreCase("identify")) {
-							System.out.println(CallsignEngine.telephonyToDesignator(param));
-						}
-						else if(method.equalsIgnoreCase("params")) {
-							System.out.println(InstructionEngine.parse(param).toString());
-						}
-						else if(method.equalsIgnoreCase("isinstr")) {
-							int index = InstructionEngine.isInstruction(param);
-							if(index >= 0) System.out.println("Valid instruction: index[" + index + "]");
-							else System.out.println("Unrecognized instruction");
-						}
+						else if(method.equalsIgnoreCase("tonum")) System.out.println(NumberEngine.toNumeric(param));
+						else if(method.equalsIgnoreCase("identify")) System.out.println(CallsignEngine.telephonyToDesignator(param));
+						else if(method.equalsIgnoreCase("params")) System.out.println(InstructionEngine.parse(param).toString());
+						else if(method.equalsIgnoreCase("isinstr")) System.out.println("Valid instruction: index[" + InstructionEngine.isInstruction(param) + "]");
 						else System.out.println("Unrecognized command '" + method + "' type help for command list");
 					} catch(ParseException e) {
 						System.out.println(e.getMessage());
-					} 
+					} catch(Exception e) {
+						System.out.println("Unknown error");
+						System.out.println("msg: " + e.getMessage());
+						System.out.println("cause: " + e.getCause());
+						e.printStackTrace();
+					}
 					
 				}	
 				
@@ -130,8 +124,6 @@ public class Console {
 			System.out.println("Help text file not found!");
 			e.printStackTrace();
 		} 
-		
-		
 	}
 	
 	/**
