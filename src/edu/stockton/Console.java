@@ -86,8 +86,12 @@ public class Console {
 						else if(method.equalsIgnoreCase("tonum")) System.out.println(NumberEngine.toNumeric(param));
 						else if(method.equalsIgnoreCase("identify")) System.out.println(CallsignEngine.telephonyToDesignator(param));
 						else if(method.equalsIgnoreCase("params")) System.out.println(InstructionEngine.parse(param).toString());
-						else if(method.equalsIgnoreCase("isinstr")) System.out.println("Valid instruction: index[" + InstructionEngine.isInstruction(param) + "]");
-						else System.out.println("Unrecognized command '" + method + "' type help for command list");
+						else if(method.equalsIgnoreCase("isinstr")) {
+							int index = InstructionEngine.isInstruction(param);
+							String output = index >= 0 ? "Valid instruction: index[" + index + "]" : "Not a recognized instruction";
+							System.out.println(output);
+						}
+						else System.out.println("Unrecognized command '" + method + "'. Type \"help\" for command list.");
 					} catch(ParseException e) {
 						System.out.println(e.getMessage());
 					} catch(Exception e) {
