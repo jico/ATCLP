@@ -18,10 +18,6 @@ public class Console {
 	private static String[] line;
 	private static LinkedList params = new LinkedList();
 	private static ListIterator itr;	
-	
-	private static boolean verbose = false;
-	private static boolean fileInput = false;
-	private static boolean silent = false;
 
 	public static void main(String[] args) throws Exception {
 		boolean exit = false;
@@ -30,6 +26,10 @@ public class Console {
 		System.out.println("\"help\" for more information");
 				
 		do {
+			boolean verbose = false;
+			boolean fileInput = false;
+			boolean silent = false;
+			 
 			params.clear();
 			System.out.print(">> ");
 			
@@ -75,7 +75,7 @@ public class Console {
 					try {
 						if(method.equalsIgnoreCase("parse")) {
 							if(fileInput) {
-								parseFile(param);
+								parseFile(param, silent);
 							} else System.out.println(LanguageProcessor.parse(param).toXML());
 						}
 						else if(method.equalsIgnoreCase("tonum")) System.out.println(NumberEngine.toNumeric(param));
@@ -109,7 +109,7 @@ public class Console {
 	}
 	
 	
-	public static void parseFile(String filename) throws FileNotFoundException {
+	public static void parseFile(String filename, boolean silent) throws FileNotFoundException {
 		FileReader reader = new FileReader(filename);
 		Scanner in = new Scanner(reader);
 		

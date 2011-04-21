@@ -23,10 +23,11 @@ public class LanguageProcessor {
 	 * @return An ATCCommand object containing the parsed elements
 	 */
 	public static ATCCommand parse(String command) {
+		
 		ArrayList<String> tokens = new ArrayList<String>();
 		ArrayList<Component> components = new ArrayList<Component>();
 		
-		String[] words = command.split(" ");
+		String[] words = command.split("[ -]");
 		for(String word : words) {
 			tokens.add(word);
 		}
