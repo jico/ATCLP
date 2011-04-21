@@ -28,9 +28,10 @@ public class Console {
 		do {
 			 
 			params.clear();
-			System.out.print(">> ");
 			
+			System.out.print(">> ");
 			input = console.nextLine();
+			
 			if(input.equalsIgnoreCase("exit") || input.equalsIgnoreCase("quit")) exit = true;
 			else if(input.equalsIgnoreCase("help")) printHelp(); 
 			else {
@@ -76,7 +77,12 @@ public class Console {
 						// main parse method
 						if(method.equalsIgnoreCase("parse")) {
 							if(fileInput) {
-								parseFile(param, silent);
+								try {
+									parseFile(param, silent);
+								} catch(FileNotFoundException e) {
+									System.out.println("No such file: " + param);
+								}
+								
 							} else System.out.println(LanguageProcessor.parse(param, verbose).toXML());
 						}
 						
@@ -121,17 +127,36 @@ public class Console {
 		
 	}
 	
-	public static void printHelp() throws Exception {
-		FileReader reader = new FileReader("help.txt");
-		Scanner in = new Scanner(reader);
+	/**
+	 * Prints the help menu.
+	 */
+	public static void printHelp() {
+		FileReader reader;
+		try {
+			reader = new FileReader("help.txt");
+			
+			Scanner in = new Scanner(reader);
+			
+			while(in.hasNext()) {
+				System.out.println(in.nextLine());
+			}
+			
+		} catch (FileNotFoundException e) {
+			System.out.println("Help text file not found!");
+			e.printStackTrace();
+		} 
 		
-		while(in.hasNext()) {
-			System.out.println(in.nextLine());
-		}
 		
 	}
 	
-	
+	/**
+	 * Parses a file containing ATC command transcriptions line by line.
+	 * Runs the LanguageProcessor parse method on each line and prints
+	 * the result.
+	 * @param filename name of the file
+	 * @param silent if set to true, will suppress any unparsed lines
+	 * @throws FileNotFoundException
+	 */
 	public static void parseFile(String filename, boolean silent) throws FileNotFoundException {
 		FileReader reader = new FileReader(filename);
 		Scanner in = new Scanner(reader);
