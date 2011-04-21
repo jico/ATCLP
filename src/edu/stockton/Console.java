@@ -150,7 +150,11 @@ public class Console {
 		FileReader reader = new FileReader(filename);
 		Scanner in = new Scanner(reader);
 		
+		int total = 0;
+		int successful = 0;
+		
 		while (in.hasNextLine()) {
+			total++;
 			
 			String cmd = in.nextLine();
 			if(!silent) System.out.println(cmd);
@@ -159,6 +163,7 @@ public class Console {
 				String output = LanguageProcessor.parse(cmd, false).toXML();
 				if(silent) System.out.println(cmd);
 				System.out.println(output + "\n");
+				successful++;
 			} catch(ParseException e) {
 				if(!silent) System.out.println(e.getMessage() + "\n");
 			} catch(Exception e) {
@@ -167,6 +172,8 @@ public class Console {
 			
 		}
 		
+		System.out.println("Total commands: " + total);
+		System.out.println("Successfully parsed: " + successful);
 		in.close();
 	}
 	
