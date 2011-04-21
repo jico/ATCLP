@@ -110,7 +110,7 @@ public class InstructionEngine {
 		if(instructions == null) init();
 		
 		int index = isInstruction(phrase);
-		if(index < 0) System.out.println("No recognized instructions");
+		if(index < 0) throw new RuntimeException("Unrecognized instruction");
 		
 		String instRegex = instructions.get(index).getPhrase();
 		String type = instructions.get(index).getType();

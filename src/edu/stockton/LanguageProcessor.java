@@ -112,6 +112,8 @@ public class LanguageProcessor {
 			}
 		}
 		
+		if(recipient == "") throw new RuntimeException("No recognized recipient");
+		
 		String phrase = "";
 		for(Component component : components) {
 			phrase += component.getText() + " ";

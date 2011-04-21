@@ -19,7 +19,7 @@ public class Console {
 	private static LinkedList params = new LinkedList();
 	private static ListIterator itr;	
 
-	public static void main(String[] args) throws Exception {
+	public static void main(String[] args) {
 		boolean exit = false;
 		
 		System.out.println("ATCLP Console started");
@@ -83,7 +83,13 @@ public class Console {
 									System.out.println("No such file: " + param);
 								}
 								
-							} else System.out.println(LanguageProcessor.parse(param, verbose).toXML());
+							} else {
+								try {
+									System.out.println(LanguageProcessor.parse(param, verbose).toXML());
+								} catch(Exception e) {
+									System.out.println(e.getMessage());
+								}
+							}
 						}
 						
 						// other useful methods
@@ -115,7 +121,7 @@ public class Console {
 						}
 						else System.out.println("Unrecognized command '" + method + "' type help for command list");
 					} catch(Exception e) {
-						System.out.println("Unknown error: " + e.getStackTrace());
+						System.out.println("Unknown error: " + e.getMessage());
 					}
 					
 				}	
