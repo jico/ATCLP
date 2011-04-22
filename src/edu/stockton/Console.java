@@ -66,6 +66,7 @@ public class Console {
 						LanguageProcessor.setDebug(debug);
 						if(!debug) LanguageProcessor.setVerbose(verbose);
 						InstructionEngine.setDebug(debug);
+						NumberEngine.setDebug(debug);
 					
 					if(verbose) {
 						System.out.println("cmd: " + method);

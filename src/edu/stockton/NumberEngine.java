@@ -22,6 +22,7 @@ public class NumberEngine {
 	private static NodeList numbersList;
 	private static String xmlFilename = "numbers.xml";
 	private static HashMap numbers;
+	private static boolean debug = false;
 	
 	/**
 	 * Initializes the engine and loads number library.
@@ -96,10 +97,14 @@ public class NumberEngine {
 		for(String token : tokens) numberTokens.add(token);
 		ListIterator<String> cursor = numberTokens.listIterator();
 		
+		if(debug) System.out.println("\n[NE] parsing number: " + text);
+		
 		String numericString = "";
 		while(cursor.hasNext()) {
 			String current = cursor.next();
 			current = current.toLowerCase();
+			
+			if(debug) System.out.print("[NE] token: " + current + " => ");
 			
 			if(current.equalsIgnoreCase("thousand")) {
 				if(cursor.hasNext()) {
@@ -118,8 +123,14 @@ public class NumberEngine {
 					int nextVal = getValue(next);
 					int nextWeight = getWeight(next);
 					int nextNum = nextVal * nextWeight;
-					if(nextNum < 10) numericString += "0" + nextNum;
-					else if(nextNum < 20 || !cursor.hasNext()) numericString += nextNum; 
+					if(nextNum < 10) {
+						numericString += "0" + nextNum;
+						if(debug) System.out.print("next token: " + nextNum + " => ");
+					}
+					else if(nextNum < 20 || !cursor.hasNext()) {
+						numericString += nextNum; 
+						if(debug) System.out.print("next token: " + nextNum + " => ");
+					}
 					else cursor.previous();
 				} else numericString += "00";
 				
@@ -137,6 +148,8 @@ public class NumberEngine {
 				}
 				
 			}
+			
+			if(debug) System.out.println(numericString);
 		}
 		
 		return numericString;
@@ -166,6 +179,10 @@ public class NumberEngine {
 		
 		Number number = (Number) numbers.get(s);
 		return number.getWeight();
+	}
+	
+	public static void setDebug(boolean s) {
+		debug = s;
 	}
 
 }
