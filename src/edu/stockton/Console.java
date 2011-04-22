@@ -20,6 +20,7 @@ public class Console {
 	private static ListIterator itr;
 	
 	private static boolean verbose;
+	private static boolean debug;
 	private static boolean fileInput;
 	private static boolean silent;
 
@@ -57,11 +58,13 @@ public class Console {
 						// Get option flags and set local option vars
 						for(int i = 1; i < optionsList.length; i++) options += optionsList[i].trim();	
 						verbose = options.indexOf("v") >= 0 ? true : false;
+						debug = options.indexOf("d") >= 0 ? true : false;
 						fileInput = options.indexOf("f") >= 0 ? true : false;
 						silent = options.indexOf("s") >= 0 ? true : false;
 						
-						// Set Engine options
-						LanguageProcessor.setVerbose(verbose);
+						// Set necessary Engine options
+						LanguageProcessor.setDebug(debug);
+						if(!debug) LanguageProcessor.setVerbose(verbose);
 					
 					if(verbose) {
 						System.out.println("cmd: " + method);
@@ -71,6 +74,7 @@ public class Console {
 					
 					// Execute method
 					try {
+						
 						// main parse method
 						if(method.equalsIgnoreCase("parse")) {
 							if(fileInput) {
@@ -82,7 +86,7 @@ public class Console {
 							} else System.out.println(LanguageProcessor.parse(param).toXML());
 						}
 						
-						// other useful methods
+						// other methods
 						else if(method.equalsIgnoreCase("tonum")) System.out.println(NumberEngine.toNumeric(param));
 						else if(method.equalsIgnoreCase("identify")) System.out.println(CallsignEngine.telephonyToDesignator(param));
 						else if(method.equalsIgnoreCase("params")) System.out.println(InstructionEngine.parse(param).toString());
@@ -92,8 +96,10 @@ public class Console {
 							System.out.println(output);
 						}
 						else System.out.println("Unrecognized command '" + method + "'. Type \"help\" for command list.");
+						
 					} catch(ParseException e) {
 						System.out.println(e.getMessage());
+						
 					} catch(Exception e) {
 						System.out.println("Unknown error");
 						System.out.println("msg: " + e.getMessage());

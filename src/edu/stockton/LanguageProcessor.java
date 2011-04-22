@@ -15,6 +15,7 @@ import javax.swing.text.html.HTMLDocument.Iterator;
  */
 public class LanguageProcessor {
 	private static boolean verbose = false;
+	private static boolean debug = false;
 	
 	/**
 	 * Interprets a complete ATC command string.
@@ -35,12 +36,15 @@ public class LanguageProcessor {
 		// Tag each token and group
 		String currentTag = "";
 		String componentText = "";
+				
 		for(int i = 0; i < tokens.size(); i++) {
 			
 			// Disregard any common filler words
 			if(tokens.get(i).equalsIgnoreCase("um") || tokens.get(i).equalsIgnoreCase("uh") ) continue;
 			
 			String thisTag = tag(tokens.get(i));
+			
+			if(debug) System.out.println("[LP] tagging token '" + tokens.get(i) + "' => " + thisTag);
 			
 			if(thisTag.equals(currentTag) && i < tokens.size()-1) {
 				componentText += tokens.get(i) + " ";	
@@ -87,29 +91,32 @@ public class LanguageProcessor {
 			String type = current.getType();
 			
 			if(type.equals("number")) {	
-				if(verbose) System.out.print("'" + current.getText() + "' => ");
+				if(debug) System.out.print("[LP] ");
+				if(verbose || debug) System.out.print("'" + current.getText() + "' => ");
 				
 				current.setText(NumberEngine.toNumeric(current.getText()));
 				components.set(i, current);
 				
-				if(verbose) System.out.println("'" + current.getText() + "'");
+				if(verbose || debug) System.out.println("'" + current.getText() + "'");
 				
 				// Recognize recipient and build recipient string
 				if(recipient == "" && components.get(i-1).getType() == "callsign") {
 					recipient = components.get(i-1).getText() + components.get(i).getText();
 					
-					if(verbose) System.out.println("Recipient identified: " + recipient);
+					if(debug) System.out.print("[LP] ");
+					if(verbose || debug) System.out.println("Recipient identified: " + recipient);
 				}
 				
 			} else if(type.equals("callsign") || type.equals("unidentified") && CallsignEngine.isCallsign(current.getText())) {
-				if(verbose) System.out.print("'" + current.getText() + "' => ");
+				if(debug) System.out.print("[LP] ");
+				if(verbose || debug) System.out.print("'" + current.getText() + "' => ");
 				
 				if(type.equals("unidentified")) current.setType("callsign");
 				
 				current.setText(CallsignEngine.telephonyToDesignator(current.getText()));
 				components.set(i, current);
 				
-				if(verbose) System.out.println("'" + current.getText() + "'");
+				if(verbose || debug) System.out.println("'" + current.getText() + "'");
 			}
 		}
 		
@@ -159,6 +166,10 @@ public class LanguageProcessor {
 	
 	public static void setVerbose(boolean s) {
 		verbose = s;
+	}
+	
+	public static void setDebug(boolean s) {
+		debug = s;
 	}
 	
 	
