@@ -34,7 +34,7 @@ public class InstructionEngine {
 	
 	/**
 	 * Loads the instruction library into the static hash table. 
-	 * The engine doesn't need to be implicitly initialized,
+	 * The engine doesn't need to be explicitly initialized,
 	 * each method does a check for initialization before proceeding.
 	 */
 	public static void init() {
@@ -178,6 +178,10 @@ public class InstructionEngine {
 		return -1;
 	}
 	
+	/**
+	 * Sets debug option, which prints low-level process details
+	 * @param s true or false to set on/off
+	 */
 	public static void setDebug(boolean s) {
 		debug = s;
 	}

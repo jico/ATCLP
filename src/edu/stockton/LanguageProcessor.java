@@ -164,10 +164,18 @@ public class LanguageProcessor {
 		return tag;
 	}
 	
+	/**
+	 * Sets verbose option, which prints parsing details.
+	 * @param s true or false to set on/off
+	 */
 	public static void setVerbose(boolean s) {
 		verbose = s;
 	}
 	
+	/**
+	 * Sets debug option, which prints low-level process details
+	 * @param s true or false to set on/off
+	 */
 	public static void setDebug(boolean s) {
 		debug = s;
 	}

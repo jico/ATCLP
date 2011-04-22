@@ -25,6 +25,11 @@ public class CallsignEngine {
 	
 	private static HashMap callsigns;
 	
+	/**
+	 * Initializes the engine and loads callsign library.
+	 * Optional to explicitly initialize, since methods
+	 * initialize the engine if it hasn't been.
+	 */
 	public static void init() {
 		try {
 			loader = factory.newDocumentBuilder();
@@ -62,11 +67,22 @@ public class CallsignEngine {
 		}
 	}
 	
+	/**
+	 * Checks if the string is a valid callsign
+	 * @param s The telephony callsign
+	 * @return True if a valid callsign, false otherwise
+	 */
 	public static boolean isCallsign(String s) {
 		if(callsigns == null) init();
 		return callsigns.containsKey(s.toLowerCase());
 	}
 	
+	/**
+	 * Converts a callsign telephony to its corresponding 
+	 * three letter designator
+	 * @param telephony The callsign telephony to convert
+	 * @return The corresponding three letter designator string
+	 */
 	public static String telephonyToDesignator(String telephony) {
 		if(callsigns == null) init();
 		if(!isCallsign(telephony)) throw new ParseException("Not a recognized telephony");
@@ -74,6 +90,11 @@ public class CallsignEngine {
 		return callsign.getDesignator().toUpperCase();
 	}
 	
+	/**
+	 * Finds the corresponding company to a callsign telephony
+	 * @param telephony The callsign telephony to search
+	 * @return The callsign telephony company string
+	 */
 	public static String telephonyToCompany(String telephony) {
 		if(callsigns == null) init();
 		if(!isCallsign(telephony)) throw new ParseException("Not a recognized telephony");

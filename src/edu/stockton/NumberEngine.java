@@ -26,7 +26,7 @@ public class NumberEngine {
 	
 	/**
 	 * Initializes the engine and loads number library.
-	 * Optional to implicitly initialize, since methods
+	 * Optional to explicitly initialize, since methods
 	 * initialize the engine if it hasn't been.
 	 */
 	public static void init() {
@@ -181,6 +181,10 @@ public class NumberEngine {
 		return number.getWeight();
 	}
 	
+	/**
+	 * Sets debug option, which prints low-level process details
+	 * @param s true or false to set on/off
+	 */
 	public static void setDebug(boolean s) {
 		debug = s;
 	}
