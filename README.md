@@ -8,7 +8,7 @@ Realistic traffic flows and voice communications are used in the ATC simulations
 
 ## Javadoc
 
-The latest Javadoc of the edu.stockton package containing the ATCLP can be found [here](http://www.jicobaligod.com/projects/ATCLP).
+The latest Javadoc of the edu.stockton package containing the ATCLP is contained in the `doc/` directory.
 
 ## Console
 
@@ -61,17 +61,18 @@ Methods are not case-sensitive.
 
 __Options__:
 
-_All options are currently implemented for the_ `parse` _method only!_
-
 Options syntax:
 Option flags are preceded by a hyphen (-), and must come before the parameter. You can precede each option individually with a hyphen, or pass a hyphen followed by multiple option flags:
 	parse -f -s 'transcipt.txt'
 	parse -fs 'transcript.txt'
 	
 
-*	__-v__ (verbose) Makes the LanguageProcessor output its current activities to the screen. Useful for debugging!
-*	__-f__ (file input) Parses a file rather than a passed string. Filename must still be wrapped in single quotes. A sample transcript _transcript.txt_ is included for testing. __Note:__ Libraries and system is not fully implemented, so most of the transcript will not be parsed correctly.
+*	__-v__ (verbose) Makes the LanguageProcessor output its current parsing details to the screen. 
+*	__-d__ (debug) Similar to `-v` (verbose), but outputs lower-level parsing process details.
+*	__-f__ (file input*) Parses a file rather than a passed string. Filename must still be wrapped in single quotes. A sample transcript _transcript.txt_ is included for testing. __Note:__ Libraries and system are not fully implemented, so most of the transcript will not be parsed correctly.
 *	__-s__ (silent) Passed with `-f` (file input) option. Suppresses any parse errors and outputs only the lines that have been successfully parsed.
+
+\* For `parse` method only.
 
 ### Sample ATC commands
 
