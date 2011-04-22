@@ -70,7 +70,7 @@ Option flags are preceded by a hyphen (-), and must come before the parameter. Y
 *	__-v__ (verbose) Makes the LanguageProcessor output its current parsing details to the screen. 
 *	__-d__ (debug) Similar to `-v` (verbose), but outputs lower-level parsing process details.
 *	__-f__ (file input*) Parses a file rather than a passed string. Filename must still be wrapped in single quotes. A sample transcript _transcript.txt_ is included for testing. __Note:__ Libraries and system are not fully implemented, so most of the transcript will not be parsed correctly.
-*	__-s__ (silent) Passed with `-f` (file input) option. Suppresses any parse errors and outputs only the lines that have been successfully parsed.
+*	__-s__ (silent*) Passed with `-f` (file input) option. Suppresses any parse errors and outputs only the lines that have been successfully parsed.
 
 \* For `parse` method only.
 
