@@ -65,6 +65,7 @@ public class Console {
 						// Set necessary Engine options
 						LanguageProcessor.setDebug(debug);
 						if(!debug) LanguageProcessor.setVerbose(verbose);
+						InstructionEngine.setDebug(debug);
 					
 					if(verbose) {
 						System.out.println("cmd: " + method);

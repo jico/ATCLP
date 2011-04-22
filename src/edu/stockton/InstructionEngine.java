@@ -30,6 +30,7 @@ public class InstructionEngine {
 	private static String xmlFilename = "instructions.xml";
 	
 	private static ArrayList<Instruction> instructions;
+	private static boolean debug = false;
 	
 	/**
 	 * Loads the instruction library into the static hash table. 
@@ -119,6 +120,12 @@ public class InstructionEngine {
 		String paramIn = null;
 		String mParamRegex = null;
 		
+		if(debug) {
+			System.out.println("[IE] instruction index: " + index);
+			System.out.println("[IE] grammar: " + instRegex);
+			System.out.println("[IE] type " + type);
+		}
+		
 		for(Param p : instructions.get(index).getParams()) {
 			String paramRegex = p.getInputRegex();
 			Pattern paramPattern = Pattern.compile(paramRegex);
@@ -135,6 +142,12 @@ public class InstructionEngine {
 		if(param == null) throw new ParseException("No valid parameters");
 		
 		String paramOutput = paramIn.replaceAll(param.getInputRegex(), param.getOutputRegex());
+		
+		if(debug) {
+			System.out.println("[IE] param regex: " + mParamRegex);
+			System.out.println("[IE] match: " + paramIn);
+			System.out.println("[IE] param: " + paramOutput);
+		}
 		
 		ParsedInstruction parsedInstr = new ParsedInstruction(phrase, paramOutput, type, mParamRegex, instRegex);
 		return parsedInstr;
@@ -163,6 +176,10 @@ public class InstructionEngine {
 		}
 		
 		return -1;
+	}
+	
+	public static void setDebug(boolean s) {
+		debug = s;
 	}
 	
 }
