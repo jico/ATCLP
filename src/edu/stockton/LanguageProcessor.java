@@ -23,12 +23,15 @@ public class LanguageProcessor {
 	 * @param command The ATC command sentence
 	 * @return An ATCCommand object containing the parsed elements
 	 */
-	public static ATCCommand parse(String command) throws ParseException {
+	public static ATCCommand parse(String command) {
 		
 		ArrayList<String> tokens = new ArrayList<String>();
 		ArrayList<Component> components = new ArrayList<Component>();
-		
 		String[] words = command.split("[ -]");
+		
+		// Threshold of word count for parsing consideration
+		if(words.length < 4) throw new ParseException("short sentence");
+		
 		for(String word : words) {
 			tokens.add(word);
 		}

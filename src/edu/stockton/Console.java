@@ -152,6 +152,7 @@ public class Console {
 		
 		int total = 0;
 		int successful = 0;
+		int garbage = 0;
 		
 		while (in.hasNextLine()) {
 			total++;
@@ -165,6 +166,7 @@ public class Console {
 				System.out.println(output + "\n");
 				successful++;
 			} catch(ParseException e) {
+				if(e.getMessage() == "short sentence") garbage++;
 				if(!silent) System.out.println(e.getMessage() + "\n");
 			} catch(Exception e) {
 				if(!silent) System.out.println("parse error\n");
@@ -173,10 +175,12 @@ public class Console {
 		}
 		
 		double percent = (double) successful / total * 100;
+		double truePercent = (double) successful / (total - garbage) * 100;
 		
 		System.out.println("Total commands: " + total);
 		System.out.println("Successfully parsed: " + successful);
-		System.out.println(Math.round(percent) + "% success");
+		System.out.println(Math.round(percent) + "% total success");
+		System.out.println("Estimated " + Math.round(truePercent) + "% true success with " + garbage + " lines likely garbage.");
 		in.close();
 	}
 	
