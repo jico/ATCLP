@@ -3,7 +3,7 @@
 <instructions>
 
 	<instruction>
-		<phrase>(climb|descend) and maintain (flight level|mach point) [0-9]*</phrase>
+		<phrase>(climb |descend )(and maintain |maintain )(flight level|mach point) [0-9]*</phrase>
 		<type>altitude</type>
 		<params>
 			<param>
@@ -20,13 +20,18 @@
 	</instruction>
 	
 	<instruction>
-		<phrase>(maintain|cruise) (flight level) [0-9]*</phrase>
+		<phrase>(maintain|cruise) (flight level|mach point) [0-9]*</phrase>
 		<type>altitude</type>
 		<params>
 			<param>
 				<type>altitude</type>
 				<input>flight level ([0-9]+)</input>
 				<output>FL$1</output>
+			</param>
+			<param>
+				<type>speed</type>
+				<input>mach point ([0-9]+)</input>
+				<output>.$1M</output>
 			</param>
 		</params>
 	</instruction>
@@ -109,7 +114,7 @@
 	</instruction>
 	
 	<instruction>
-		<phrase>cleared direct [A-Za-z]+</phrase>
+		<phrase>(cleared|clear) direct [A-Za-z]+</phrase>
 		<type>clearance</type>
 		<params>
 			<param>
