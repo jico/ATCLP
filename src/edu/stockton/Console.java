@@ -172,8 +172,11 @@ public class Console {
 			
 		}
 		
+		double percent = (double) successful / total * 100;
+		
 		System.out.println("Total commands: " + total);
 		System.out.println("Successfully parsed: " + successful);
+		System.out.println(Math.round(percent) + "% success");
 		in.close();
 	}
 	
