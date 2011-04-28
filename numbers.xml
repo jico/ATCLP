@@ -1,7 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<!DOCTYPE Numbers>
-
 <numbers>
 	
 	<number>
@@ -13,6 +11,12 @@
 	<number>
 		<text>oh</text>
 		<value>0</value>
+		<weight>1</weight>
+	</number>
+	
+	<number>
+		<text>niner</text>
+		<value>9</value>
 		<weight>1</weight>
 	</number>
 	
