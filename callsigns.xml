@@ -302,7 +302,13 @@
 	</callsign>
 	
 	<callsign>
-		<telephony>KOREANAIR</telephony>
+		<telephony>KOREAN AIR</telephony>
+		<designator>KAL</designator>
+		<company>KOREAN AIR LINES CO., LTD.</company>
+	</callsign>
+	
+	<callsign>
+		<telephony>KOREAN</telephony>
 		<designator>KAL</designator>
 		<company>KOREAN AIR LINES CO., LTD.</company>
 	</callsign>
