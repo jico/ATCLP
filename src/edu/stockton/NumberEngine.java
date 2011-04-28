@@ -114,8 +114,15 @@ public class NumberEngine {
 					int nextNum = nextVal * nextWeight;
 					if(nextNum < 10 && !cursor.hasNext()) { 
 						numericString += "00" + nextNum;
-					} else if(nextNum < 20 && !cursor.hasNext()) numericString += "0" + nextNum; 
-					else cursor.previous();
+					} else if(nextNum % 10 == 0) {
+						if(!cursor.hasNext()) numericString += "0" + nextNum;
+						else {
+							numericString += "0";
+							cursor.previous();
+						}
+					} else if(nextNum > 10) {
+						if(!cursor.hasNext()) numericString += "0" + nextNum;
+					} else cursor.previous();
 				} else numericString += "000";
 			} else if(current.equalsIgnoreCase("hundred")) {
 				if(cursor.hasNext()) {
