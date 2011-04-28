@@ -100,7 +100,7 @@ public class LanguageProcessor {
 				if(verbose || debug) System.out.println("'" + current.getText() + "'");
 				
 				// Recognize recipient and build recipient string
-				if(recipient == "" && components.get(i-1).getType() == "callsign") {
+				if(components.get(i-1).getType() == "callsign") {
 					recipient = components.get(i-1).getText() + components.get(i).getText();
 					
 					if(debug) System.out.print("[LP] ");
