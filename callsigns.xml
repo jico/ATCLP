@@ -14,6 +14,18 @@
 	</callsign>
 
 	<callsign>
+		<telephony>AMERICAN</telephony>
+		<designator>AAL</designator>
+		<company>AMERICAN AIRLINES INC.</company>
+	</callsign>
+
+	<callsign>
+		<telephony>SOUTHWEST</telephony>
+		<designator>SWA</designator>
+		<company>SOUTHWEST AIRLINES CO. (SAN ANTONIO, TX)</company>
+	</callsign>
+
+	<callsign>
 		<telephony>AERO FENIX</telephony>
 		<designator>FNX</designator>
 		<company>AERO FENIX</company>
@@ -36,12 +48,263 @@
 		<designator>AWE</designator>
 		<company>US AIRWAYS (PHOENIX, AZ)</company>
 	</callsign>
-	
+
 	<callsign>
 		<telephony>UNITED</telephony>
 		<designator>UAL</designator>
 		<company>UNITED AIRLINES</company>
 	</callsign>
 
-</callsigns>
+	<callsign>
+		<telephony>ACADEMY</telephony>
+		<designator>ACD</designator>
+		<company>ACADEMY AIRLINES</company>
+	</callsign>
 
+	<callsign>
+		<telephony>CYCLONE</telephony>
+		<designator>CYD</designator>
+		<company> ACCESSAIR, INC </company>
+	</callsign>
+
+	<callsign>
+		<telephony>CALSTAR MED</telephony>
+		<designator>CMD</designator>
+		<company>CALSTAR</company>
+	</callsign>
+
+	<callsign>
+		<telephony>SEMO</telephony>
+		<designator>SEM</designator>
+		<company>CAPE CENTRAL AIRWAYS, INC</company>
+	</callsign>
+
+	<callsign>
+		<telephony>CAPAIR</telephony>
+		<designator>CPX</designator>
+		<company>CAPITAL AIR SERVICE, INC</company>
+	</callsign>
+
+	<callsign>
+		<telephony>CAPPY</telephony>
+		<designator>CCI</designator>
+		<company>CAPITAL CARGO INTERNATION AIRLINES</company>
+	</callsign>
+
+	<callsign>
+		<telephony>AIR VIRGINIA</telephony>
+		<designator>FVA</designator>
+		<company>CARDINAL/AIR VIRGINIA</company>
+	</callsign>
+
+	<callsign>
+		<telephony>LONGHAUL</telephony>
+		<designator>GGC</designator>
+		<company>CARGO 360, INC</company>
+	</callsign>
+
+	<callsign>
+		<telephony>CARIB-X</telephony>
+		<designator>TLC</designator>
+		<company>CARIBBEAN EXPRESS, INC</company>
+	</callsign>
+
+	<callsign>
+		<telephony>SKYWEST</telephony>
+		<designator>SKW</designator>
+		<company>SKY WEST AVIATION, INC. (ST. GEORGE, UT)</company>
+	</callsign>
+
+	<callsign>
+		<telephony>DELTA</telephony>
+		<designator>DAL</designator>
+		<company>DELTA AIR LINES, INC</company>
+	</callsign>
+
+	<callsign>
+		<telephony>CONTINENTAL</telephony>
+		<designator>COA</designator>
+		<company>CONTINENTAL AIR LINES INC.</company>
+	</callsign>
+
+	<callsign>
+		<telephony>SOUTHWEST</telephony>
+		<designator>SWA</designator>
+		<company>SOUTHWEST AIRLINES CO. (SAN ANTONIA, TX)</company>
+	</callsign>
+
+	<callsign>
+		<telephony>US CHARTER</telephony>
+		<designator>UCH</designator>
+<company>US AIRPORTS AIR CHARTER, INC. (ROCHESTER, NY) </company>
+	</callsign>
+
+	<callsign>
+		<telephony>USARMY</telephony>
+		<designator>USR</designator>
+		<company>US ARMY AERONAUTICAL SERVICES AGENCY</company>
+	</callsign>
+	
+	<callsign>
+		<telephony>JET USA</telephony>
+		<designator>JUS</designator>
+		<company>USA JET AIRLINES, INC (BELLEVILLE, MI)</company>
+	</callsign>
+
+	<callsign>
+		<telephony>GETAWAY</telephony>
+		<designator>GWY</designator>
+		<company>USA 3000 AIRLINES (NEWTOWN SQUARE, PA)</company>
+	</callsign>
+
+	<callsign>
+		<telephony>VANGUARD AIR</telephony>
+		<designator>VGD</designator>
+		<company>VANGUARD AIRLINES, INC. (KANSAS CITY, MO)</company>
+	</callsign>
+
+	<callsign>
+		<telephony>ACE AIR</telephony>
+		<designator>AER</designator>
+		<company>ALASKA CENTRAL EXPRESS, INC. (FAIRBANKS, AK) </company>
+	</callsign>
+
+	<callsign>
+		<telephony>FEDEX</telephony>
+		<designator>FDX</designator>
+		<company>FEDERAL EXPRESS CORPORATION (LITTLE ROCK, AR) </company>
+	</callsign>
+
+	<callsign>
+		<telephony>DANW AIR</telephony>
+		<designator>DWN</designator>
+		<company>DAWN AIR, INC,(MANTEO, NC)</company>
+	</callsign>
+
+	<callsign>
+		<telephony>DELTA STATE</telephony>
+		<designator>DSU</designator>
+		<company>DELTA STATE UNIVERSITY (CLEVELAND, MS)</company>
+	</callsign>
+
+	<callsign>
+		<telephony>AGRICULTURE</telephony>
+		<designator>AGR</designator>
+		<company>DEPT. OF AGRICULTURE (HYATTSVILLE, MD)</company>
+	</callsign>
+
+	<callsign>
+		<telephony>PALMSPRINGS JET</telephony>
+		<designator>PJM</designator>
+		<company>DESERT JET, LLC (THERMAL, CA)</company>
+	</callsign>
+
+	<callsign>
+		<telephony>SPARKLE</telephony>
+		<designator>SPK</designator>
+		<company>DIAMOND AVIATION, INC.(STATESBORO, GA)</company>
+	</callsign>
+
+	<callsign>
+		<telephony>DISCOVER</telephony>
+		<designator>DCV</designator>
+		<company>DISCOVER AIR(ORLANDO, FL)</company>
+	</callsign>
+
+	<callsign>
+		<telephony>REDSKIN</telephony>
+		<designator>RSK</designator>
+		<company>DSWA, LLC(DULLES, VA)</company>
+	</callsign>
+
+	<callsign>
+		<telephony>DWYAIR</telephony>
+		<designator>DFS</designator>
+		<company>DWYER AIRCRAFT SALES, INC.(MASON CITY, IA)</company>
+	</callsign>
+
+	<callsign>
+		<telephony>DYNAMIC AIR</telephony>
+		<designator>DYA</designator>
+		<company>DYNAMIC AIRWAYS, LLC</company>
+	</callsign>
+
+	<callsign>
+		<telephony>PLATINUM AIR</telephony>
+		<designator>EHD</designator>
+		<company>E H DARBY AVIATION(SHEFFIELD, AL)</company>
+	</callsign>
+
+	<callsign>
+		<telephony>TALON AIR</telephony>
+		<designator>TLO</designator>
+		<company>EAGLE CANYON AIRLINES, INC.(LAS VEGAS, NV)</company>
+	</callsign>
+
+	<callsign>
+		<telephony>STINGER</telephony>
+		<designator>SGR</designator>
+		<company> EASTWIND AIRLINES (GREENSBORO, NC)</company>
+	</callsign>
+
+	<callsign>
+		<telephony>ELAN</telephony>
+		<designator>ELX</designator>
+		<company>ELAN EXPRESS (LAS VEGAS, NV)</company>
+	</callsign>
+
+	<callsign>
+		<telephony>ENERGY SHUTTLE</telephony>
+		<designator>ENS</designator>
+		<company>ENTERGY SERVICES, INC. (NEW ORELANS, LA)</company>
+	</callsign>
+
+	<callsign>
+		<telephony> EPPS AIR</telephony>
+		<designator>EPS</designator>
+		<company>EPPS AIR SERVICES, INC.(ATLANTA, GA)</company>
+	</callsign>
+
+	<callsign>
+		<telephony>EVERGREEN</telephony>
+		<designator>EIA</designator>
+		<company>EVERGREEN INTERNATIONAL AIRLINES</company>
+	</callsign>
+
+	<callsign>
+		<telephony>EXECAIR</telephony>
+		<designator>EAC</designator>
+		<company>EXECUTIVE AIR CHARTER(HONOLULU, HI)</company>
+	</callsign>
+
+	<callsign>
+		<telephony>EX-FLIGHT</telephony>
+		<designator>XFL</designator>
+		<company>EXECUTIVE FLITEWAYS, INC(RONKONKOMA, NY)</company>
+	</callsign>
+
+	<callsign>
+		<telephony>UPS</telephony>
+		<designator>UPS</designator>
+		<company>UNITED PARCEL SERVICE COMPANY, (LOUISVILLE, KY)</company>
+	</callsign>
+
+	<callsign>
+		<telephony>CITRUS</telephony>
+		<designator>TRS </designator>
+		<company>AIRTRAN AIRWAYS, INC (ORLANDO, FL)</company>
+	</callsign>
+
+	<callsign>
+		<telephony>EAGLE FLIGHT</telephony>
+		<designator>EGF</designator>
+		<company>AMR AMERICAN EAGLE, INC (DALLAS/FT.WORTH. TX)</company>
+	</callsign>
+	
+	<callsign>
+		<telephony>KOREANAIR</telephony>
+		<designator>KAL</designator>
+		<company>KOREAN AIR LINES CO., LTD.</company>
+	</callsign>
+
+</callsigns>
