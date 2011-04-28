@@ -84,6 +84,7 @@ public class LanguageProcessor {
 		}
 		
 		String recipient = "";
+		boolean numID = false;
 		
 		// Do conversions for each token
 		for(int i = 0; i < components.size(); i++) {
@@ -102,12 +103,13 @@ public class LanguageProcessor {
 				// Recognize recipient and build recipient string
 				if(components.get(i-1).getType() == "callsign") {
 					recipient = components.get(i-1).getText() + components.get(i).getText();
+					numID = true;
 					
 					if(debug) System.out.print("[LP] ");
 					if(verbose || debug) System.out.println("Recipient identified: " + recipient);
 				}
 				
-			} else if(type.equals("callsign") || type.equals("unidentified") && CallsignEngine.isCallsign(current.getText())) {
+			} else if(type.equals("callsign") && components.get(i+1).getType() == "number") {
 				if(debug) System.out.print("[LP] ");
 				if(verbose || debug) System.out.print("'" + current.getText() + "' => ");
 				
@@ -120,12 +122,36 @@ public class LanguageProcessor {
 			}
 		}
 		
-		if(recipient == "") throw new ParseException("No recognized recipient");
 		
 		String phrase = "";
 		for(Component component : components) {
 			phrase += component.getText() + " ";
 		}
+		
+		if(recipient == "" || !numID) {
+			String[] cTokens = phrase.split(" ");
+			if(debug) System.out.println("Checking for two-word callsigns");
+			for(int i = 0; i < cTokens.length - 1; i++) {
+				String token = cTokens[i] + " " + cTokens[i+1];
+				
+				if(debug) System.out.println("Checking: '" + token + "'");
+				if(CallsignEngine.isCallsign(token)) {
+					recipient = CallsignEngine.telephonyToDesignator(token);
+					try {
+						Integer.parseInt(cTokens[i+2]);
+						recipient += cTokens[i+2];
+						if(debug) System.out.println("Found valid callsign!");
+					} catch (NumberFormatException e) {
+						if(debug) System.out.println("No callsign (numeric) identifier");
+						continue;
+					}
+				}
+			}
+		}
+		
+		if(recipient == "") throw new ParseException("No recognized recipient");
+		
+		
 		
 		if(verbose) System.out.println("Looking for valid instructions...");
 		
