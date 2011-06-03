@@ -10,7 +10,7 @@ Realistic traffic flows and voice communications are used in the ATC simulations
 
 The latest Javadoc of the edu.stockton package containing the ATCLP is contained in the `doc/` directory.
 
-An online version can be found [here](http://www.baligod.com/projects/atclp/javadoc).
+An online version can be found [here](http://www.baligod.com/project/atclp/javadoc).
 
 ## Console
 
